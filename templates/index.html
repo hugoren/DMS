@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<!--＃list for 循环-->
+<!--index {{request.user}}-->
+{#{% for i in List %}#}
+{#{{i}}#}
+{#{% endfor %}#}
+
+<!--#判断用户是否登陆-->
+{% if request.user.is_authenticated %}
+    {{request.user.username}}你已登陆！
+    </p>
+
+    {% for j in List %}
+        <a href="{{j.url_url}}" target="_blank">{{j.url_name}}</a>
+    </p>
+    {% endfor %}
+
+{% else %}
+    请登录！
+{% endif %}
+
+</p>
+<!--＃获取当前网址-->
+{{request.path}}
+
+
+<!--get参数-->
+{{request.GET.urlencode}}
+
+
+</body>
+</html>
