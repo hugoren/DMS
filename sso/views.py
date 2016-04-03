@@ -9,7 +9,6 @@ from  django.http import  HttpResponse
 
 def select_Uri():
     url_list = Url.objects.all()
-    print  url_list
     for i in url_list:
         print i.url_name + i.url_url + i.url_note
     return url_list

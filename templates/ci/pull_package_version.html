@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ci</title>
+</head>
+<body>
+<!--#判断用户是否登陆-->
+{% if request.user.is_authenticated %}
+    {{request.user.username}}你已登陆！
+    </p>
+
+    {% for j in List %}
+        <a href="{{j.url_url}}" target="_blank">{{j.url_name}}</a>
+    </p>
+    {% endfor %}
+
+{% else %}
+    请登录！
+{% endif %}
+
+{{List}}
+ci
+</body>
+</html>

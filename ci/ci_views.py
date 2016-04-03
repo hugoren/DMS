@@ -1,7 +1,10 @@
 #coding:utf-8
 
 from django.shortcuts import render
-
+from sso.models import Url
+# from ci.pull_package_version import ssh_client
+import pull_package_version
+import  threading
 # Create your views here.
 
 
@@ -27,5 +30,7 @@ def ci(request):
         # url_list = Url.objects.all()
         # for i in url_list:
         #     print i
-        return render(request,'index.html',{'List':select_Uri()})
+        # return render(request,'index.html',{'List':select_Uri()})
         #  return  render_to_response('index.html',{'data':url_list})
+
+        return  render(request,'ci/pull_package_version.html',{"List":pull_package_version.ssh_client("","","").ssh_exce_cmd()})
