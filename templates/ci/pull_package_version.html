@@ -19,7 +19,13 @@
     请登录！
 {% endif %}
 
-{{List}}
-ci
+<!--版本号-->
+<form>
+    {% for i in Pack_List %}
+          <input type="radio" name="version" value="{{i}}" /> {{i}} </br>
+    {% endfor %}
+</form>
+
+
 </body>
 </html>

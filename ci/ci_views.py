@@ -33,4 +33,4 @@ def ci(request):
         # return render(request,'index.html',{'List':select_Uri()})
         #  return  render_to_response('index.html',{'data':url_list})
 
-        return  render(request,'ci/pull_package_version.html',{"List":pull_package_version.ssh_client("","","").ssh_exce_cmd()})
+        return  render(request,'ci/pull_package_version.html',{"Pack_List":pull_package_version.ssh_client("","admin",").ssh_exce_cmd()})

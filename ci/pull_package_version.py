@@ -35,11 +35,15 @@ class ssh_client(threading.Thread):
                 stdin,stdout,stderr = ssh.exec_command(command)
                 # return_code = ssh.subprocess.Popen('echo "90909" >>/Users/hugo/test.txt', shell=True)
             stdin.write("Y")
-            # print stdout.read()
+            # print (stdout.read()).split('\n')
             ssh_list = []
-            ssh_list.append(str(stdout.read()))
+            ssh_list.extend((stdout.read()).split('\n'))
+            print stdout.read()
             print ssh_list[0]
+            print ssh_list
             ssh.close()
+            return ssh_list
+
 
         except IOError as e :
             print e.message
@@ -52,7 +56,7 @@ if __name__ == '__main__':
     # ip = sys.argv[1]
     # username = sys.argv[2]
     # password = sys.argv[3]
-    ip = ""
+    ip = "119.29.101.41"
     username = "admin"
     password = ""
     command_list = open('./command_list','r')
@@ -60,7 +64,7 @@ if __name__ == '__main__':
     # threads = []
     for each_command in command_list:
         commands.append(each_command)
-        temp_thread = ssh_client(ip,username,password,commands)
+        temp_thread = ssh_client(ip,username,password)
         # threads.append(temp_thread.ssh_exce_cmd())
     threading.Thread(temp_thread.ssh_exce_cmd()).start()
 
