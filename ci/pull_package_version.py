@@ -58,7 +58,7 @@ if __name__ == '__main__':
     # password = sys.argv[3]
     ip = "119.29.101.41"
     username = "admin"
-    password = ""
+    password = "y298FTgS8Y"
     command_list = open('./command_list','r')
     commands = []
     # threads = []
