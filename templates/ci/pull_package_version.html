@@ -21,9 +21,20 @@
 
 <!--版本号-->
 <form>
+
+     <select name="cars">
+          <option value="volvo">主机a</option>
+          <option value="saab">主机b</option>
+          <option value="fiat">主机c</option>
+         <option value="audi">主机d</option>
+     </select>
+      <input type="button" value="回滚">
+     </br>
     {% for i in Pack_List %}
           <input type="radio" name="version" value="{{i}}" /> {{i}} </br>
     {% endfor %}
+
+
 </form>
 
 
