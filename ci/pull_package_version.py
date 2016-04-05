@@ -54,7 +54,7 @@ class ssh_client(threading.Thread):
 
 if __name__ == '__main__':
     # ip = sys.argv[1]
-    # username = sys.argv[2]
+    # username = sys.argv[2]lllllll
     # password = sys.argv[3]
     ip = "119.29.101.41"
     username = "admin"
