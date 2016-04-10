@@ -17,9 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from ci import ci_views
 from sso import  views
-
+from dtr import  dtr_views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
     url(r'^ci/',ci_views.ci),
+    url(r'^book/$',dtr_views.Booklist.as_view()),
+    url(r'^book/(\d+)',dtr_views.BookDetail.as_view()),
+#     url(r'^book1/$',dtr_views.APIView),
 ]
