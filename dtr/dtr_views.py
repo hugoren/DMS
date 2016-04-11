@@ -5,11 +5,12 @@ from django.shortcuts import render
 from  django.http import  StreamingHttpResponse
 from  rest_framework.renderers import  JSONRenderer
 from  dtr.models import Book
-from  dtr.serializers import  BookSerializer
+from  dtr.book_serializers import BookSerializer
 
 from rest_framework.views import  APIView
 from rest_framework.response import  Response
 from rest_framework import  generics
+from dtr.pyredis import pyRedis
 
 # class JSONResponse(StreamingHttpResponse):
 #     def __init__(self,data,**kwargs):
@@ -37,7 +38,14 @@ class BookDetail(APIView):
     def get(self,request,num,formt=None):
         b = Book.objects.get(id=num)
         print  b.author
-        ser = BookSerializer(b)
+        ser = BookSerializer(b.author)
+        print  ser
         print  ser.data
         return Response(ser.data)
+
+class get_redis(APIView):
+    def get(self,request,parameter,format=None):
+        redis_value = pyRedis().get_key(parameter)
+        return  Response(redis_value)
+
 

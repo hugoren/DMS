@@ -24,5 +24,7 @@ urlpatterns = [
     url(r'^ci/',ci_views.ci),
     url(r'^book/$',dtr_views.Booklist.as_view()),
     url(r'^book/(\d+)',dtr_views.BookDetail.as_view()),
+    url(r'^getredis/(.+)/$',dtr_views.get_redis.as_view())
+    # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 #     url(r'^book1/$',dtr_views.APIView),
 ]
