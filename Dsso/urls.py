@@ -19,8 +19,9 @@ from django.contrib import admin
 from ci import ci_views
 from sso import  views
 from dtr import  dtr_views
-from  ci import  pack_upload
+from ci import  pack_upload
 from ci import  pack_download
+from ci import  pack_update
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -30,7 +31,9 @@ urlpatterns = [
     url(r'^getredis/(.+)/$',dtr_views.get_redis.as_view()),
     #文件上传入口
     url(r'^upload/',pack_upload.upload_file),
-    #web方式下载
+    #web方式下载，带一个参数
     url(r'^download/(.+)/$',pack_download.pack_download),
+    #修改版本名
+    url(r'^update/(.+)/(.+)/$',pack_update.pack_update),
 
 ]
