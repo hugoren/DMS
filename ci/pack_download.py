@@ -5,11 +5,10 @@ from django.http import StreamingHttpResponse
 from  django.http import  HttpResponse
 
 
-parameter_app = "t1"
 #web版下载
-def pack_download(request):
+def pack_download(request,parameter):
     # do something...
-
+    print parameter
     def file_iterator(file_name, chunk_size=512):
         with file(file_name,'rb') as f:
             while True:
@@ -19,10 +18,13 @@ def pack_download(request):
                 else:
                     break
 
-    the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%parameter_app
+    the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%parameter
     response = StreamingHttpResponse(file_iterator(the_file_name))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
 
-    return  response
+    return response
+
+
+
 
