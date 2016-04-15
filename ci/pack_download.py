@@ -16,8 +16,6 @@ def pack_download(request):
                     yield c
                 else:
                     break
-            # for chunk in f.chunks():
-            #     yield  chunk
 
     the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/admin-1.0-SNAPSHOT.tgz20160329-094622'
     response = StreamingHttpResponse(file_iterator(the_file_name))

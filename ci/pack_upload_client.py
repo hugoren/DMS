@@ -4,15 +4,16 @@
 import  urllib2
 from  poster.encode import  multipart_encode
 from  poster.streaminghttp import register_openers
+import  sys
 
 
 register_openers()
 
-parameter_app = sy
+parameter_app = sys.argv[1]
 
 def upload_file():
     url = 'http://localhost:8000/upload/'
-    datagen,headers = multipart_encode({"uploadfile":open('command_list','rb')})
+    datagen,headers = multipart_encode({"uploadfile":open(parameter_app,'rb')})
     request = urllib2.Request(url,datagen,headers)
     print  urllib2.urlopen(request).read()
 

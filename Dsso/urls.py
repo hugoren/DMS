@@ -1,3 +1,4 @@
+#coding:utf-8
 """Dsso URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -28,7 +29,7 @@ urlpatterns = [
     url(r'^book/(\d+)',dtr_views.BookDetail.as_view()),
     url(r'^getredis/(.+)/$',dtr_views.get_redis.as_view()),
     #文件上传入口
-    url(r'^upload/',pack_upload.upload_main().upload_file),
+    url(r'^upload/',pack_upload.upload_file),
     #web方式下载
     url(r'^download/',pack_download.pack_download),
 

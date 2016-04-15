@@ -16,8 +16,9 @@ from  models import  upload_log
 def upload_file(request):
     if request.method == 'POST':
 
-        un = request.POST.get('username')
-        f = request.FILES.get('uploadfile')  #'uploadfile'与提交表单中input名一致，多个文件参见getlist()
+        # un = request.POST.get('username')
+        #'uploadfile'与提交表单中input名一致，多个文件参见getlist()
+        f = request.FILES.get('uploadfile')
         path = "./00"
         if not os.path.dirname(path):
             os.makedirs(path)
