@@ -24,7 +24,6 @@ def upload_file(request):
             os.makedirs(path)
         filename = os.path.join('00',f.name)
         local_file = file(filename,'wb+')
-        print un
         for chunk in f.chunks():
             local_file.write(chunk)
         return  HttpResponse(u'{}保存好了'.format(filename))
