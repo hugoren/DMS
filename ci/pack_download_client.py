@@ -8,6 +8,6 @@ def download_file():
     with open("%s"%parameter_app,"wb") as code:
         code.write(r.content)
     print  "success"
-if __name__ \
-        == '__main__':
+
+if __name__ == '__main__':
     download_file()
