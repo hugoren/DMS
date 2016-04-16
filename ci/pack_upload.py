@@ -26,7 +26,7 @@ def upload_file(request):
         local_file = file(filename,'wb+')
         for chunk in f.chunks():
             local_file.write(chunk)
-        return  HttpResponse(u'{}保存好了'.format(filename))
+        return  HttpResponse(u'{}保存好了'.format(f.name))
     return render_to_response('ci/pack_upload.html',{})
 
 
