@@ -20,7 +20,7 @@ def pack_download(request,parameter):
     the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%parameter
     response = StreamingHttpResponse(file_iterator(the_file_name))
     response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(the_file_name)
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(parameter)
 
     return response
 

@@ -22,6 +22,7 @@ from dtr import  dtr_views
 from ci import  pack_upload
 from ci import  pack_download
 from ci import  pack_update
+from ci import  pack_download_web
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -32,7 +33,7 @@ urlpatterns = [
     #文件上传入口
     url(r'^upload/',pack_upload.upload_file),
     #web方式下载
-    url(r'^download/$',pack_download.pack_download),
+    url(r'^download/$',pack_download_web.pack_download),
     #client方式下载
     url(r'^download_client/(.+)/$',pack_download.pack_download),
     #修改版本名
