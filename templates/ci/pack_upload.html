@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>upload</title>
 </head>
 <body>
+   <h1>upload</h1>
 
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+{#	   <label>用户名：</label><input type="text" name="username" />#}
+	<label>文  件：</label><input type="file" name="uploadfile" />
+	<input type="submit" value="提交" />
+</form>
 </body>
 </html>

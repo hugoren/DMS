@@ -1,6 +1,5 @@
 #coding:utf-8'
 
-#web方式下载
 from django.http import StreamingHttpResponse
 from  django.http import  HttpResponse
 
@@ -8,6 +7,7 @@ from  django.http import  HttpResponse
 #web版下载
 def pack_download(request,parameter):
     # do something...
+    print parameter
     def file_iterator(file_name, chunk_size=512):
         with file(file_name,'rb') as f:
             while True:
