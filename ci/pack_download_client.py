@@ -3,12 +3,9 @@ import  requests
 import  sys
 import  os
 
-#存储路径
-download_dir = sys.argv[1]
-#下载包名称
-parameter_app = sys.argv[2]
 
-def download_file():
+
+def download_file(download_dir,parameter_app):
     url = 'http://localhost:8000/download_client/%s'%parameter_app
     r = requests.get(url)
     os.chdir(download_dir)
@@ -20,7 +17,11 @@ def download_file():
         return e.message
 
 if __name__ == '__main__':
-    download_file()
+    #存储路径
+    download_dir = sys.argv[1]
+    #下载包名称
+    parameter_app = sys.argv[2]
+    download_file(download_dir,parameter_app)
 
 
 
