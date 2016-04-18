@@ -10,12 +10,9 @@ import  os
 
 register_openers()
 
-#包路径
-parameter_path = sys.argv[1]
-#环境_应用_版本_.tar.gz
-parameter_app = sys.argv[2]
 
-def upload_file():
+
+def upload_file(parameter_path,parameter_app):
     url = 'http://localhost:8000/upload/'
     os.chdir(parameter_path)
     datagen,headers = multipart_encode({"uploadfile":open(parameter_app,'rb')})
@@ -24,4 +21,8 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    upload_file()
+    #包路径
+    parameter_path = sys.argv[1]
+    #环境_应用_版本_.tar.gz
+    parameter_app = sys.argv[2]
+    upload_file(parameter_path,parameter_app)
