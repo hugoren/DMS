@@ -1,15 +1,11 @@
 #-*-coding:utf-8-*-
 
 #client端摸拟表单上传
-import  urllib2
-from  poster.encode import  multipart_encode
-from  poster.streaminghttp import register_openers
+
 from django.shortcuts import  render,render_to_response
-from  django import  forms
-from  django.http import  HttpResponse
-import  os
-import  requests
-from  models import  upload_log
+from django.http import HttpResponse
+import os
+
 
 
 #接收大文件上传入口
