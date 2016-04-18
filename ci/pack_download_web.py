@@ -17,7 +17,6 @@ def pack_download(request):
 
     if request.method == 'POST':
         download_file = request.POST.get('download_file')
-        print download_file
         if os.path.exists('/Users/hugo/PycharmProjects/Dsso/00/%s'%download_file):
             def file_iterator(file_name, chunk_size=512):
                 with file(file_name,'rb') as f:

@@ -3,7 +3,12 @@ import os
 import time
 import shutil
 from  django.http import  HttpResponse
+
 def pack_update(request,parameter1,parameter2):
+
+    format = '%Y-%m-%d-%H:%M:%S'
+    value = time.localtime(time.time())
+    dt = time.strftime(format, value)
     filename_list = str(parameter1).split('_')
     print  filename_list
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
@@ -23,7 +28,7 @@ def pack_update(request,parameter1,parameter2):
         os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+parameter2)
         # os.renames(parameter1,"%s_%s_.tar.gz"%(filename_list[0],filename_list[1])
         # os.renames('06.tar.gz','07.tar.gz')
-        os.renames(parameter1,"%s_%s_%s_%s.tar.gz"%(filename_list[0],filename_list[1],parameter2,time.time()))
+        os.renames(parameter1,"%s_%s_%s_%s.tar.gz"%(filename_list[0],filename_list[1],parameter2,dt))
     except Exception as e:
         return e.message
     return HttpResponse(u'{}变更成功%s'.format(parameter1))
