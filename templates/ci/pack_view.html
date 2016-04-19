@@ -87,13 +87,15 @@
 
 
 <div class="container" style="margin-top: 40px;">
-    <ul class="list-group">
-        {% for i in pack_list %}
-            <a  href="javascript:void(0);" data-url="{{i}}" target="_blank">
-            <li class="list-group-item">{{i}}</li>
-            </a>
-        {% endfor %}
-    </ul>
+    <div class="row col-md-8">
+        <ul class="list-group">
+            {% for i in pack_list %}
+                <a  href="javascript:void(0);" data-url="{{i}}" target="_blank">
+                <li class="list-group-item">{{i}}</li>
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 <!--js模拟表单下载-->
