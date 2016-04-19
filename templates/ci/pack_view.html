@@ -20,6 +20,7 @@
 <form method="post">
 
 {#     <select name="cars">#}
+{#    http://localhost:8000/download/?download_file=test_admin_stable_2016-04-19_14:25.tar.gz#}
 {#          <option value="volvo">主机a</option>#}
 {#          <option value="saab">主机b</option>#}
 {#          <option value="fiat">主机c</option>#}
@@ -36,8 +37,24 @@
 </p>
 
    {% for i in pack_list %}
-          <input type="radio" name="version" value="{{i}}" /> {{i}} </br>
-    {% endfor %}
+           <a class="download" href="javascript:void(0);" data-url="{{i}}" target="_blank">{{i}}</a>
 
+       </br>
+    {% endfor %}
+    <form id="downForm" action="/download/" method="post" style="display:none;">
+      <input id="file" type="hidden" name="download_file" value="">
+    </form>
 </body>
+<script src="http://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script>
+  $(function(){
+    $('.download').click(function(){
+      var $this = $(this);
+      $('#file').val($this.data('url'));
+      $('#downForm').submit();
+        return false;
+    })
+  })
+  
+</script>
 </html>

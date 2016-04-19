@@ -7,8 +7,7 @@ from  django.http import  HttpResponse
 
 #web版下载
 def pack_download(request,parameter):
-    # do something...
-    print parameter
+
     def file_iterator(file_name, chunk_size=512):
         dir_list = str(parameter).split('_')
         pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
@@ -21,7 +20,6 @@ def pack_download(request,parameter):
                 else:
                     break
 
-    # the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%parameter
     response = StreamingHttpResponse(file_iterator(parameter))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format(parameter)
