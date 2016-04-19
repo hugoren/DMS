@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ci</title>
+</head>
+<body>
+
+
+<!--#判断用户是否登陆-->
+{% if request.user.is_authenticated %}
+    {{request.user.username}}你已登陆！
+    </p>
+{% else %}
+    请登录！
+{% endif %}
+
+
+<!--根据测试环境，应用，版本号查询-->
+<form method="post">
+
+{#     <select name="cars">#}
+{#          <option value="volvo">主机a</option>#}
+{#          <option value="saab">主机b</option>#}
+{#          <option value="fiat">主机c</option>#}
+{#         <option value="audi">主机d</option>#}
+{#     </select>#}
+{#      <input type="button" value="回滚">#}
+     </br>
+     <label>环境：</label><input type="text" name="pack_env" /><label>应用：</label><input type="text" name="pack_app" /><label>版本：</label><input type="text" name="pack_version" />
+	<input type="submit" value="查询" /><input type="reset" value="Reset" />
+
+
+
+</form>
+</p>
+
+   {% for i in pack_list %}
+          <input type="radio" name="version" value="{{i}}" /> {{i}} </br>
+    {% endfor %}
+
+</body>
+</html>
