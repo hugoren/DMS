@@ -3,44 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>ci</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
 
 
 <!--#判断用户是否登陆-->
-{% if request.user.is_authenticated %}
-    {{request.user.username}}你已登陆！
-    </p>
-{% else %}
-    请登录！
-{% endif %}
+{#{% if request.user.is_authenticated %}#}
+{#    {{request.user.username}}你已登陆！#}
+{#    </p>#}
+{#{% else %}#}
+{#    请登录！#}
+{#{% endif %}#}
+
+<!--导航栏-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+
+                <!--#判断用户是否登陆-->
+                {% if request.user.is_authenticated %}
+                    <li><a href="#">{{request.user.username}}你已登陆</a></li>
+                {% else %}
+                    <li><a href="#">请登录！</a></li>
+                {% endif %}
+
+              </ul>
+        </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 
 
 <!--根据测试环境，应用，版本号查询-->
-<form method="post">
+<div class="container">
+  <form class="form-inline" method="post">
+    <div class="form-group">
+      <label for="exampleInputName2">环境：</label>
+      <input type="text" class="form-control" name="pack_env" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">应用：</label>
+      <input type="text" class="form-control" name="pack_app" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail2">版本：</label>
+      <input type="text" class="form-control" name="pack_version" />
+    </div>
+    <button type="submit" class="btn btn-default">查询</button>
+    <input type="reset"  class="btn btn-default" value="Reset" />
+  </form>
+</div>
 
-{#     <select name="cars">#}
-{#    http://localhost:8000/download/?download_file=test_admin_stable_2016-04-19_14:25.tar.gz#}
-{#          <option value="volvo">主机a</option>#}
-{#          <option value="saab">主机b</option>#}
-{#          <option value="fiat">主机c</option>#}
-{#         <option value="audi">主机d</option>#}
-{#     </select>#}
-{#      <input type="button" value="回滚">#}
-     </br>
-     <label>环境：</label><input type="text" name="pack_env" /><label>应用：</label><input type="text" name="pack_app" /><label>版本：</label><input type="text" name="pack_version" />
-	<input type="submit" value="查询" /><input type="reset" value="Reset" />
+
+<div class="container" style="margin-top: 40px;">
+    <div class="row col-md-4 col-md-offset-2" >
+        <div class="list-group">
+         {% for i in pack_list %}
+          <a class="list-group-item active download" href="javascript:void(0);" data-url="{{i}}" target="_blank">{{i}}</a>
+         {% endfor %}
+      </div>
+    </div>
+</div>
 
 
-
-</form>
-</p>
-
-   {% for i in pack_list %}
-           <a class="download" href="javascript:void(0);" data-url="{{i}}" target="_blank">{{i}}</a>
-
-       </br>
-    {% endfor %}
     <form id="downForm" action="/download/" method="post" style="display:none;">
       <input id="file" type="hidden" name="download_file" value="">
     </form>
