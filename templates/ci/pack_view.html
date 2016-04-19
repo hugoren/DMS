@@ -53,7 +53,7 @@
 
                 <!--#判断用户是否登陆-->
                 {% if request.user.is_authenticated %}
-                    <li><a href="#">{{request.user.username}}你已登陆</a></li>
+                    <li><a href="#">{{request.user.username}},你已登陆</a></li>
                 {% else %}
                     <li><a href="#">请登录！</a></li>
                 {% endif %}

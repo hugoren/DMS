@@ -33,7 +33,7 @@ def pack_update(request,parameter1,parameter2):
         os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+parameter2)
         # os.renames(parameter1,"%s_%s_.tar.gz"%(filename_list[0],filename_list[1])
         # os.renames('06.tar.gz','07.tar.gz')
-        os.renames(parameter1,"%s_%s_%s_%s.tar.gz"%(filename_list[0],filename_list[1],parameter2,(a+o).strftime("%Y-%m-%d_%H:%M")))
+        os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],parameter2,(a+o).strftime("%Y-%m-%d_%H:%M")))
     except Exception as e:
         return e.message
     return HttpResponse(u'{}变更成功%s'.format(parameter1))
