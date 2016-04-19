@@ -16,8 +16,11 @@ from  models import  upload_log
 def pack_download(request):
 
     if request.method == 'POST':
+        pack_path = "/Users/hugo/PycharmProjects/Dsso/00"
         download_file = request.POST.get('download_file')
-        if os.path.exists('/Users/hugo/PycharmProjects/Dsso/00/%s'%download_file):
+        pack_name = str(download_file).split('_')
+        os.chdir(pack_path+'/'+pack_name[0]+'/'+pack_name[1]+'/'+pack_name[2])
+        if os.path.exists(download_file):
             def file_iterator(file_name, chunk_size=512):
                 with file(file_name,'rb') as f:
                     while True:
@@ -27,8 +30,8 @@ def pack_download(request):
                         else:
                             break
 
-            the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%download_file
-            response = StreamingHttpResponse(file_iterator(the_file_name))
+            # the_file_name = '/Users/hugo/PycharmProjects/Dsso/00/%s'%download_file
+            response = StreamingHttpResponse(file_iterator(download_file))
             response['Content-Type'] = 'application/octet-stream'
             response['Content-Disposition'] = 'attachment;filename="{0}"'.format(download_file)
             return response

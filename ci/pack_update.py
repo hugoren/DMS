@@ -16,7 +16,6 @@ def pack_update(request,parameter1,parameter2):
     # print (a+o).strftime("%Y-%m-%d_%H:%M")
     # dt = time.strftime("%Y-%m-%d_%H-%M",time.localtime(time.time()))
     filename_list = str(parameter1).split('_')
-    print  filename_list
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
     os.chdir(pack_path)
     if not os.path.exists(filename_list[0]):

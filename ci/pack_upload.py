@@ -37,6 +37,6 @@ def upload_file(request):
         except Exception as e:
 
             return  HttpResponse(u'{}上传失败%s'%e.message.format(f.name))
-        return render_to_response('ci/pack_upload.html',{})
+    return render_to_response('ci/pack_upload.html',{})
 
 

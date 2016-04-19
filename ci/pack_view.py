@@ -3,15 +3,7 @@
 from django.shortcuts import render
 from sso.models import Url
 import  os
-from django.shortcuts import  render,render_to_response
-
-
-def select_Uri():
-    url_list = Url.objects.all()
-    print  url_list
-    for i in url_list:
-        print i.url_name + i.url_url + i.url_note
-    return url_list
+from django.shortcuts import render,render_to_response
 
 
 def pack_view(request):
@@ -37,6 +29,7 @@ def pack_view(request):
             #     print  pack
             # return pack_list
             # return render(request,'ci/pack_view.html')
+            pack_list
             return render(request,'ci/pack_view.html',{'pack_list':pack_list})
         else:
             return render(request,'ci/pack_view.html')
