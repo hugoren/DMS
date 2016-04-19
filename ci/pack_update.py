@@ -5,7 +5,7 @@ import shutil
 import datetime
 from  django.http import  HttpResponse
 
-def pack_update(request,parameter1,parameter2):
+def pack_update(request,parameter1):
 
     # format = '%Y-%m-%d-%H:%M:%S'
     # value = time.localtime(time.time())
@@ -24,16 +24,15 @@ def pack_update(request,parameter1,parameter2):
     if not os.path.exists(filename_list[1]):
         os.makedirs(filename_list[1])
     os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1])
-    if not os.path.exists("stable"):
-            os.makedirs("stable")
+    if not os.path.exists("release"):
+            os.makedirs("release")
     os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+filename_list[2])
     try:
-        print  parameter1
-        shutil.copy2(parameter1,pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+"stable")
-        os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+parameter2)
+        shutil.copy2(parameter1,pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+"release")
+        os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+'release')
         # os.renames(parameter1,"%s_%s_.tar.gz"%(filename_list[0],filename_list[1])
         # os.renames('06.tar.gz','07.tar.gz')
-        os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],parameter2,(a+o).strftime("%Y%m%d%H%M")))
+        os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],'release',(a+o).strftime("%Y%m%d%H%M")))
     except Exception as e:
         return e.message
     return HttpResponse(u'{}变更成功%s'.format(parameter1))
