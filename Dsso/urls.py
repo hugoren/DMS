@@ -23,6 +23,7 @@ from ci import  pack_upload
 from ci import  pack_download
 from ci import  pack_update
 from ci import  pack_download_web
+from ci import  pack_view
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -30,13 +31,15 @@ urlpatterns = [
     url(r'^book/$',dtr_views.Booklist.as_view()),
     url(r'^book/(\d+)',dtr_views.BookDetail.as_view()),
     url(r'^getredis/(.+)/$',dtr_views.get_redis.as_view()),
-    #文件上传入口
+    #pack_文件上传入口
     url(r'^upload/',pack_upload.upload_file),
-    #web方式下载
+    #pack_web方式下载
     url(r'^download/$',pack_download_web.pack_download),
-    #client方式下载
+    #pack_client方式下载
     url(r'^download_client/(.+)/$',pack_download.pack_download),
-    #修改版本名
+    #pack_修改版本名
     url(r'^update/(.+)/(.+)/$',pack_update.pack_update),
+    #pack_查看版本号并下载
+    url(r'^view/',pack_view.pack_view),
 
 ]

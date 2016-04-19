@@ -11,7 +11,6 @@ def pack_download(request,parameter):
     print parameter
     def file_iterator(file_name, chunk_size=512):
         dir_list = str(parameter).split('_')
-        print  dir_list
         pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
         os.chdir(pack_path+'/'+dir_list[0]+'/'+dir_list[1]+'/'+dir_list[2])
         with file(file_name,'rb') as f:
