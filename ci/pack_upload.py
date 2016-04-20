@@ -15,6 +15,8 @@ def upload_file(request):
         # un = request.POST.get('username')
         #'uploadfile'与提交表单中input名一致，多个文件参见getlist()
         f = request.FILES.get('uploadfile')
+        query = request.GET.get('q','')
+        print  query
         #根据文件名逐层判断文件夹是否存在
         filename_list = str(f.name).split('_')
         pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
