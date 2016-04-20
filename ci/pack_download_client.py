@@ -7,6 +7,7 @@ import  os
 
 def download_file(download_dir,parameter_app):
     url = 'http://localhost:8000/download_client/%s'%parameter_app
+    # url = 'http://119.29.104.171:10000/download_client/%s'%parameter_app
     r = requests.get(url)
     os.chdir(download_dir)
     try:

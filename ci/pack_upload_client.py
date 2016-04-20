@@ -13,6 +13,7 @@ register_openers()
 
 
 def upload_file(parameter_path,parameter_app):
+    # url = 'http://119.29.104.171:10000/upload/'
     url = 'http://localhost:8000/upload/'
     os.chdir(parameter_path)
     datagen,headers = multipart_encode({"uploadfile":open(parameter_app,'rb')})
