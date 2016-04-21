@@ -7,10 +7,10 @@ import os
 import config_save
 
 
-def save_conf():
-    save_dir = config_save.read_conf('./conf/save_dir.conf').read_conf()
-    print save_dir
-    return save_dir
+# def save_conf():
+#     save_dir = config_save.read_conf('./conf/save_dir.conf').read_conf()
+#     print save_dir
+#     return save_dir
 
 #接收大文件上传入口
 def upload_file(request):
