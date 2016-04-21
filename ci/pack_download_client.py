@@ -5,24 +5,24 @@ import  os
 
 
 
-def download_file(download_dir,parameter_app):
-    url = 'http://localhost:8000/download_client/%s'%parameter_app
+def download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save):
+    url = 'http://localhost:8000/download_client/?app_flag=%s&app_name=%s&app_package=%s'%(parameter_flag,parameter_app,parameter_package)
     # url = 'http://119.29.104.171:10000/download_client/%s'%parameter_app
     r = requests.get(url)
-    os.chdir(download_dir)
+    os.chdir(parameter_paakage_save)
     try:
-        with open("%s"%parameter_app,"wb") as pack_content:
+        with open("%s"%parameter_package,"wb") as pack_content:
             pack_content.write(r.content)
-        print "下载成功!"
+        print "%s,下载成功!"%parameter_package
     except Exception as e:
         return e.message
 
 if __name__ == '__main__':
-    #存储路径
-    download_dir = sys.argv[1]
-    #下载包名称
+    parameter_flag = sys.argv[1]
     parameter_app = sys.argv[2]
-    download_file(download_dir,parameter_app)
+    parameter_package = sys.argv[3]
+    parameter_paakage_save = sys.argv[4]
+    download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save)
 
 
 

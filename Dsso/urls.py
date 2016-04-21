@@ -36,7 +36,7 @@ urlpatterns = [
     #pack_web方式下载
     url(r'^download/$',pack_download_web.pack_download),
     #pack_client方式下载
-    url(r'^download_client/(.+)/$',pack_download.pack_download),
+    url(r'^download_client/',pack_download.pack_download),
     #pack_修改版本名
     url(r'^update/$',pack_update.pack_update),
     #pack_查看版本号并下载

@@ -2,17 +2,19 @@
 
 from django.http import StreamingHttpResponse
 import os
-from  django.http import  HttpResponse
 
 
 #web版下载
-def pack_download(request,parameter):
+def pack_download(request):
 
+    app_flag = request.GET.get('app_flag','')
+    app_name = request.GET.get('app_name','')
+    app_package = request.GET.get('app_package','')
     def file_iterator(file_name, chunk_size=512):
-        dir_list = str(parameter).split('_')
+        print  app_package
         pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
-        os.chdir(pack_path+'/'+dir_list[0]+'/'+dir_list[1]+'/'+dir_list[2])
-        with file(file_name,'rb') as f:
+        os.chdir(pack_path+'/'+app_flag+'/'+app_name)
+        with file(app_package,'rb') as f:
             while True:
                 c = f.read(chunk_size)
                 if c:
@@ -20,9 +22,9 @@ def pack_download(request,parameter):
                 else:
                     break
 
-    response = StreamingHttpResponse(file_iterator(parameter))
+    response = StreamingHttpResponse(file_iterator(app_package))
     response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(parameter)
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(app_package)
 
     return response
 
