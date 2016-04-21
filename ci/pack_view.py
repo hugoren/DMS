@@ -24,13 +24,17 @@ def pack_view(request):
             pack_version = request.POST.get("pack_version")
 
             pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
-            pack_list = os.listdir(pack_path+'/'+'/'+str(pack_version)+'/'+str(pack_app))
-            # for pack in pack_list:
-            #     print  pack
-            # return pack_list
-            # return render(request,'ci/pack_view.html')
-            pack_list
-            return render(request,'ci/pack_view.html',{'pack_list':pack_list})
+            try:
+                pack_list = os.listdir(pack_path+'/'+'/'+str(pack_version)+'/'+str(pack_app))
+                # for pack in pack_list:
+                #     print  pack
+                # return pack_list
+                # return render(request,'ci/pack_view.html')
+                pack_list
+                return render(request,'ci/pack_view.html',{'pack_list':pack_list})
+            except:
+                except_list=["sorry,目录或包不存在！请重新搜索"]
+                return  render(request,'ci/pack_view.html',{'pack_list':except_list})
         else:
             return render(request,'ci/pack_view.html')
 
