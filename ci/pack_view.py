@@ -19,12 +19,12 @@ def pack_view(request):
         if request.method == 'POST':
 
             #获取form端参数
-            pack_env = request.POST.get("pack_env")
+            # pack_env = request.POST.get("pack_env")
             pack_app = request.POST.get("pack_app")
             pack_version = request.POST.get("pack_version")
 
             pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
-            pack_list = os.listdir(pack_path+'/'+str(pack_env)+'/'+str(pack_app)+'/'+str(pack_version))
+            pack_list = os.listdir(pack_path+'/'+'/'+str(pack_version)+'/'+str(pack_app))
             # for pack in pack_list:
             #     print  pack
             # return pack_list
