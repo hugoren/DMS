@@ -1,20 +1,15 @@
 #coding:utf-8
 import os
-import time
 import shutil
 import datetime
 from  django.http import  HttpResponse
 
 def pack_update(request,parameter1):
 
-    # format = '%Y-%m-%d-%H:%M:%S'
-    # value = time.localtime(time.time())
-    # value = time.localtime()
-    # dt = time.strftime(format, value)
+    #由于python默认是utf,这里＋8
     a = datetime.datetime.today()
     o = datetime.timedelta(hours=8)
-    # print (a+o).strftime("%Y-%m-%d_%H:%M")
-    # dt = time.strftime("%Y-%m-%d_%H-%M",time.localtime(time.time()))
+
     filename_list = str(parameter1).split('_')
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
     os.chdir(pack_path)
