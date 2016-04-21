@@ -1,36 +1,30 @@
 #coding:utf-8
 import os
 import shutil
-import datetime
 from  django.http import  HttpResponse
 
-def pack_update(request,parameter1):
+def pack_update(request):
 
-    #由于python默认是utf,这里＋8
-    a = datetime.datetime.today()
-    o = datetime.timedelta(hours=8)
 
-    filename_list = str(parameter1).split('_')
+    app_name = request.GET.get('app_name','')
+    app_package = request.GET.get('app_package','')
+
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
+    first_layer = 'release'
     os.chdir(pack_path)
-    if not os.path.exists(filename_list[0]):
-        os.makedirs(filename_list[0])
-    os.chdir(pack_path+'/'+filename_list[0])
-    if not os.path.exists(filename_list[1]):
-        os.makedirs(filename_list[1])
-    os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1])
-    if not os.path.exists("release"):
-            os.makedirs("release")
-    os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+filename_list[2])
+    if not os.path.exists(first_layer):
+        os.makedirs(first_layer)
+    os.chdir(pack_path+'/'+first_layer)
+    if not os.path.exists(app_name):
+        os.makedirs(app_name)
+    os.chdir(pack_path+'/'+'snapshot'+'/'+app_name)
     try:
-        shutil.copy2(parameter1,pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+"release")
-        os.chdir(pack_path+'/'+filename_list[0]+'/'+filename_list[1]+'/'+'release')
-        # os.renames(parameter1,"%s_%s_.tar.gz"%(filename_list[0],filename_list[1])
-        # os.renames('06.tar.gz','07.tar.gz')
-        os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],'release',(a+o).strftime("%Y%m%d%H%M")))
+        shutil.copy2(app_package,pack_path+'/'+first_layer+'/'+app_name)
+        # os.chdir(pack_path+'/'+dir_update+'/'+app_name)
+        # os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],'release',(a+o).strftime("%Y%m%d%H%M")))
     except Exception as e:
         return e.message
-    return HttpResponse(u'{}变更成功%s'.format(parameter1))
+    return HttpResponse(u'{}变更成功%s'.format(app_package))
 
 
 if __name__ == '__main__':
