@@ -4,8 +4,13 @@
 from django.shortcuts import  render,render_to_response
 from django.http import HttpResponse
 import os
+import config_save
 
 
+def save_conf():
+    save_dir = config_save.read_conf('./conf/save_dir.conf').read_conf()
+    print save_dir
+    return save_dir
 
 #接收大文件上传入口
 def upload_file(request):
@@ -22,16 +27,19 @@ def upload_file(request):
         app_package = str(request.GET.get('app_package','')).split('/')[-1]
         #根据文件名逐层判断文件夹是否存在
 
-        fisrt_layer = 'snapshot'
-        pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
+        first_layer = 'snapshot'
+        # pack_path = save_conf()
+        # print  pack_path
+        pack_path = "/Users/hugo/PycharmProjects/Dsso/00"
+        print pack_path
         os.chdir(pack_path)
-        if not os.path.exists(fisrt_layer):
-            os.makedirs(fisrt_layer)
-        os.chdir(pack_path+'/'+fisrt_layer)
+        if not os.path.exists(first_layer):
+            os.makedirs(first_layer)
+        os.chdir(pack_path+'/'+first_layer)
         if not os.path.exists(app_name):
             os.makedirs(app_name)
         #流方式存包
-        filename = os.path.join(pack_path+'/'+fisrt_layer+'/'+'/'+app_name,f.name)
+        filename = os.path.join(pack_path+'/'+first_layer+'/'+'/'+app_name,f.name)
         try:
             local_file = file(filename,'wb+')
             for chunk in f.chunks():
