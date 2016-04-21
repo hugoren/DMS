@@ -1,7 +1,6 @@
 #-*-coding:utf-8-*-
 
 #client端摸拟表单上传
-
 from django.shortcuts import  render,render_to_response
 from django.http import HttpResponse
 import os
@@ -20,11 +19,7 @@ def upload_file(request):
         #获取客户传过来三个app_name,app_version,app_package参数
         app_name = request.GET.get('app_name','')
         app_version = request.GET.get('app_version','')
-        app_package = str(request.GET.get('app_package','')).split('/')
-        print app_name
-        print app_version
-        print app_package
-        print '%s    %s   %s'%(app_name,app_version,app_package)
+        app_package = str(request.GET.get('app_package','')).split('/')[-1]
         #根据文件名逐层判断文件夹是否存在
 
         fisrt_layer = 'snapshot'
@@ -36,7 +31,7 @@ def upload_file(request):
         if not os.path.exists(app_name):
             os.makedirs(app_name)
         #流方式存包
-        filename = os.path.join(pack_path+'/'+fisrt_layer+'/',f.name)
+        filename = os.path.join(pack_path+'/'+fisrt_layer+'/'+'/'+app_name,f.name)
         try:
             local_file = file(filename,'wb+')
             for chunk in f.chunks():
