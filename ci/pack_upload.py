@@ -26,8 +26,6 @@ def upload_file(request):
         app_version = request.GET.get('app_version','')
         app_package = str(request.GET.get('app_package','')).split('/')[-1]
         app_package_suffix = app_package.split('.')
-        print  app_package_suffix
-        print  app_package_suffix[2]
 
 
         # pack_path = save_conf()
@@ -37,6 +35,10 @@ def upload_file(request):
         T = datetime.datetime.today()
         Z = datetime.timedelta(hours=8)
         time_stamp = (T+Z).strftime("%Y%m%d%H%M")
+
+        #存储包名
+        pack_save = '%s_%s_%s.%s.%s'%(app_name,app_version,time_stamp,app_package_suffix[1],app_package_suffix[2])
+
         #逐层判断目录是否存在？创建
         pack_path = "/Users/hugo/PycharmProjects/Dsso/00"
         first_layer = 'snapshot'
@@ -48,15 +50,15 @@ def upload_file(request):
         if not os.path.exists(app_name):
             os.makedirs(app_name)
         #流方式存包
-        filename = os.path.join(pack_path+'/'+first_layer+'/'+'/'+app_name,'%s_%s_%s.%s.%s'%(app_name,app_version,time_stamp,app_package_suffix[1],app_package_suffix[2]))
+        filename = os.path.join(pack_path+'/'+first_layer+'/'+'/'+app_name,pack_save)
         try:
             local_file = file(filename,'wb+')
             for chunk in f.chunks():
                 local_file.write(chunk)
-            return HttpResponse(u'{}上传成功'.format(app_name))
+            return HttpResponse(u'{}上传成功'.format(pack_save))
         except Exception as e:
 
-            return  HttpResponse(u'{}上传失败%s'%e.message.format(app_name))
+            return  HttpResponse(u'{}上传失败%s'%e.message.format(pack_save))
     return render_to_response('ci/pack_upload.html',{})
 
 
