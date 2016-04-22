@@ -2,12 +2,6 @@
 
 from django.http import StreamingHttpResponse
 import os
-import time
-import stat
-
-
-#
-
 
 def pack_download(request):
 
@@ -16,6 +10,8 @@ def pack_download(request):
     app_package = request.GET.get('app_package','')
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
     DIR = pack_path+'/'+app_flag+'/'+app_name
+    global pack_name
+
     def pack_compare(x, y):
         stat_x = os.stat(DIR + "/" + x)
         stat_y = os.stat(DIR + "/" + y)
@@ -26,14 +22,16 @@ def pack_download(request):
         else:
             return 0
 
-
     def file_iterator(file_name, chunk_size=512):
-
         os.chdir(DIR)
+
+        global response_pack_name
         if file_name == 'latest':
             package_list = os.listdir(DIR)
             package_list.sort(pack_compare)
-            file_name = package_list[-1]
+            pack_name = package_list[-1]
+            response_pack_name = pack_name
+            file_name = pack_name
         with file(file_name,'rb') as f:
             while True:
                 c = f.read(chunk_size)
@@ -42,9 +40,16 @@ def pack_download(request):
                 else:
                     break
 
+    if app_package == 'latest':
+        p_list = os.listdir(DIR)
+        p_list.sort(pack_compare)
+        global p_name
+        p_name = p_list[-1]
+
     response = StreamingHttpResponse(file_iterator(app_package))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format("test")
-    response['package'] = 'test'
+    if app_package == 'latest':
+        response['package'] = p_name
     return response
 
