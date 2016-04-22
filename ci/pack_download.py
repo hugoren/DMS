@@ -16,7 +16,6 @@ def pack_download(request):
     app_package = request.GET.get('app_package','')
     pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
     DIR = pack_path+'/'+app_flag+'/'+app_name
-
     def pack_compare(x, y):
         stat_x = os.stat(DIR + "/" + x)
         stat_y = os.stat(DIR + "/" + y)
@@ -26,10 +25,7 @@ def pack_download(request):
             return 1
         else:
             return 0
-    # package_list = os.listdir(DIR)
-    # package_latest = package_list.sort(pack_compare)
-    # # file_name = package_latest[-1]
-    # print package_latest
+
 
     def file_iterator(file_name, chunk_size=512):
 
@@ -48,7 +44,7 @@ def pack_download(request):
 
     response = StreamingHttpResponse(file_iterator(app_package))
     response['Content-Type'] = 'application/octet-stream'
-    response['Content-Disposition'] = 'attachment;filename="{0}"'.format(app_package)
-
+    response['Content-Disposition'] = 'attachment;filename="{0}"'.format("test")
+    response['package'] = 'test'
     return response
 
