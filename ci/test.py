@@ -47,3 +47,8 @@ def t5():
         t7()
     t6()
 t5()
+
+class Animal(object):
+    def running(self):
+        print  'Animal is running'
+Animal().running()
