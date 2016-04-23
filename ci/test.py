@@ -38,8 +38,12 @@ t4(a=99,b=88,c=77)
 
 
 def t5():
+    a = 8
     print "t5"
-    def t6(y):
-        print y
-    t6("z")
+    def t6():
+        print a
+        def t7():
+            print "99"
+        t7()
+    t6()
 t5()
