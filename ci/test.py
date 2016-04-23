@@ -35,3 +35,11 @@ def t4(**f):
     print f['a']
 
 t4(a=99,b=88,c=77)
+
+
+def t5():
+    print "t5"
+    def t6(y):
+        print y
+    t6("z")
+t5()
