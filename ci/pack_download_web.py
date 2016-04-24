@@ -18,8 +18,8 @@ def pack_download(request):
     if request.method == 'POST':
         pack_path = "/Users/hugo/PycharmProjects/Dsso/00"
         download_file = request.POST.get('download_file')
-        pack_name = str(download_file).split('_')
-        os.chdir(pack_path+'/'+pack_name[0]+'/'+pack_name[1]+'/'+pack_name[2])
+        # pack_name = str(download_file).split('_')
+        os.chdir(pack_path+'/'+'release'+'/'+'admin')
         if os.path.exists(download_file):
             def file_iterator(file_name, chunk_size=512):
                 with file(file_name,'rb') as f:
