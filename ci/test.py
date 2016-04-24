@@ -51,4 +51,18 @@ t5()
 class Animal(object):
     def running(self):
         print  'Animal is running'
-Animal().running()
+
+class Dog(Animal):
+    def running(self):
+        print 'Dog is running'
+
+    def eating(self):
+        print  'Dog is eating'
+
+
+class Cat(Animal):
+    pass
+
+dog = Dog()
+dog.running()
+dog.eating()
