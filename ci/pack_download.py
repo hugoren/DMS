@@ -21,17 +21,21 @@ def pack_download(request):
             return 1
         else:
             return 0
+    if app_package == 'latest':
+        p_list = os.listdir(DIR)
+        p_list.sort(pack_compare)
+        global p_name
+        p_name = p_list[-1]
 
     def file_iterator(file_name, chunk_size=512):
         os.chdir(DIR)
 
-        global response_pack_name
         if file_name == 'latest':
-            package_list = os.listdir(DIR)
-            package_list.sort(pack_compare)
-            pack_name = package_list[-1]
-            response_pack_name = pack_name
-            file_name = pack_name
+            # package_list = os.listdir(DIR)
+            # package_list.sort(pack_compare)
+            # pack_name = package_list[-1]
+            # response_pack_name = pack_name
+            file_name = p_name
         with file(file_name,'rb') as f:
             while True:
                 c = f.read(chunk_size)
@@ -40,11 +44,7 @@ def pack_download(request):
                 else:
                     break
 
-    if app_package == 'latest':
-        p_list = os.listdir(DIR)
-        p_list.sort(pack_compare)
-        global p_name
-        p_name = p_list[-1]
+
 
     response = StreamingHttpResponse(file_iterator(app_package))
     response['Content-Type'] = 'application/octet-stream'
