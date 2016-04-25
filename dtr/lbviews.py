@@ -16,9 +16,12 @@ class lb():
 
     def lb_list(request,self):
         url = "http://203.195.140.214:20000//dynamic?upstream=zone_for_backends"
-        r = requests.get(url)
-        print r.content
-        return render(request,'dtr/lbviews.html',{'pack_list':r.content})
+        try:
+            r = requests.get(url)
+            print r.content
+            return render(request,'dtr/lbviews.html',{'pack_list':r.content})
+        except Exception as e:
+            e.message
 
 
 if __name__ == '__main__':
