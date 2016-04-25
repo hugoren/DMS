@@ -37,7 +37,8 @@ def upload_file(request):
         time_stamp = (T+Z).strftime("%Y%m%d%H%M")
 
         #存储包名
-        pack_save = '%s_%s_%s.%s.%s'%(app_name,app_version,time_stamp,app_package_suffix[1],app_package_suffix[2])
+        # pack_save = '%s_%s_%s.%s.%s'%(app_name,app_version,time_stamp,app_package_suffix[1],app_package_suffix[2])
+        pack_save = app_package+time_stamp
 
         #逐层判断目录是否存在？创建
         pack_path = "/Users/hugo/PycharmProjects/Dsso/00"
