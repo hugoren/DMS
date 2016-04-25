@@ -19,7 +19,7 @@ class lb():
         url = "http://203.195.140.214:20000//dynamic?upstream=zone_for_backends"
         r = requests.get(url)
         print r.content
-        return render(request,'dtr/.html',{'pack_list':except_list})
+        return render(request,'dtr/lbviews.html',{'pack_list':r.content})
 
 
 if __name__ == '__main__':
