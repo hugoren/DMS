@@ -14,7 +14,6 @@ class lb():
         self.max_fails = max_fails
         self.fail_timeout = fail_timeout
 
-
     def view_list(self):
         url = "http://203.195.140.214:20000//dynamic?upstream=zone_for_backends"
         r = requests.get(url)
