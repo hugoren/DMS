@@ -1,15 +1,9 @@
 #coding:utf-8
 #web方式下载
 from django.http import StreamingHttpResponse
-import  urllib2
-from  poster.encode import  multipart_encode
-from  poster.streaminghttp import register_openers
 from django.shortcuts import  render,render_to_response
-from  django import  forms
-from  django.http import  HttpResponse
-import  os
-import  requests
-from  models import  upload_log
+from django.http import  HttpResponse
+import os
 
 
 #web版下载
