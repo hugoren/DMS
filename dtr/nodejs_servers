@@ -1,0 +1,9 @@
+var http = require("http");
+var num_port = '30001'
+http.createServer(function(request, response) {
+        console.log('request received');
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write(num_port);
+        response.end();
+}).listen(num_port);
+console.log('server started_'+num_port);
