@@ -29,6 +29,6 @@ urlpatterns = [
     #pack_查看版本号并下载
     url(r'^view/',pack_view.pack_view),
     #dtr_前端路由切换视图
-    url(r'^lbviews/',lbviews.lb.view_list)
+    url(r'^lbviews/',lbviews.lb('203.195.140.214','30000','10','10min','00').lb_list)
 
 ]
