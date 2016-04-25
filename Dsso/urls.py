@@ -17,13 +17,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from ci import ci_views
-from sso import  views
-from dtr import  dtr_views
-from ci import  pack_upload
-from ci import  pack_download
-from ci import  pack_update
-from ci import  pack_download_web
-from ci import  pack_view
+from sso import views
+from dtr import dtr_views
+from ci import pack_upload
+from ci import pack_download
+from ci import pack_update
+from ci import pack_download_web
+from ci import pack_view
+from dtr import  
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -41,5 +42,7 @@ urlpatterns = [
     url(r'^update/$',pack_update.pack_update),
     #pack_查看版本号并下载
     url(r'^view/',pack_view.pack_view),
+    #dtr_路由切换视图
+    url(r'^lbveiws',)
 
 ]
