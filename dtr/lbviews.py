@@ -51,22 +51,27 @@ class lb():
 
     #设置servers_关
     def lb_down(request):
-        url = "http://%s:%s//dynamic?upstream=%s&server=127.0.0.1:30001&down="%(lb.ip,lb.port,lb.upsteam_zone)
-        try:
-            r = requests.get(url)
-            print r.content
-        except Exception as e:
-            print e.message
+        server_list = ["127.0.0.1:30000","127.0.0.1:30001"]
+        for s in server_list:
+            url = "http://%s:%s//dynamic?upstream=%s&server=%s&down="%(lb.ip,lb.port,lb.upsteam_zone,s)
+            print s
+            try:
+                r = requests.get(url)
+                print r.content
+            except Exception as e:
+                print e.message
 
 
     #设置servers_开
     def lb_up(request):
-        url = "http://%s:%s//dynamic?upstream=%s&server=127.0.0.1:30002&up="%(lb.ip,lb.port,lb.upsteam_zone)
-        try:
-            r = requests.get(url)
-            print r.content
-        except Exception as e:
-            print e.message
+        server_list = ["127.0.0.1:30000","127.0.0.1:30001"]
+        for s in server_list:
+            url = "http://%s:%s//dynamic?upstream=%s&server=%s&up="%(lb.ip,lb.port,lb.upsteam_zone,s)
+            try:
+                r = requests.get(url)
+                print r.content
+            except Exception as e:
+                print e.message
 
     #设置servers_添加
     def lb_add(request):
@@ -94,14 +99,13 @@ class lb():
         except Exception as e:
             print e.message
 
-
-
 if __name__ == '__main__':
 
     # lb().lb_list()
     # lb().lb_verbose()
     # lb().lb_update_parameters()
-    # lb().lb_down()
+    lb().lb_down()
     # lb().lb_up()
     # lb().lb_add()
-    lb().lb_remove()
+    # lb().lb_remove()
+
