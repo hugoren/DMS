@@ -4,6 +4,9 @@ import request
 from django.http import StreamingHttpResponse
 from django.shortcuts import  render,render_to_response
 from django.http import  HttpResponse
+from subprocess import Popen, PIPE, check_output
+from argparse import ArgumentParser
+import  ConfigParser
 
 class lb():
 
@@ -21,6 +24,24 @@ class lb():
     max_fails = 10
     fail_timeout = "10min"
     upsteam_zone = "zone_for_backends"
+    upstream_conf = "../conf/upstream.conf"
+
+
+    # 读取配置文件
+    def read_conf(object):
+        config = ConfigParser.ConfigParser()
+        config.read("/Users/hugo/PycharmProjects/Dsso/dtr/conf/upstream.conf")
+        all_config = {}
+
+        for section in config.sections():
+            all_config[section] = {}
+            for key, value in config.items(section):
+                all_config[section][key] = value
+
+        config = all_config["C_standy_servers"]
+        print config
+        print config["c_standy1"]
+
 
     #获取列表
     def lb_list(request):
@@ -104,8 +125,9 @@ if __name__ == '__main__':
     # lb().lb_list()
     # lb().lb_verbose()
     # lb().lb_update_parameters()
-    lb().lb_down()
+    # lb().lb_down()
     # lb().lb_up()
     # lb().lb_add()
     # lb().lb_remove()
+    lb().read_conf()
 
