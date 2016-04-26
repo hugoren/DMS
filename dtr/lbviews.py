@@ -80,7 +80,7 @@ class lb():
 
     #设置servers_删除
     def lb_remove(request):
-        url = "http://%s:%s//dynamic?upstream=%s&remove=&server=127.0.0.1:30004"%(lb.ip,lb.port,lb.upsteam_zone)
+        url = "http://%s:%s//dynamic?upstream=%s&remove=&server=%s"%(lb.ip,lb.port,lb.upsteam_zone,"127.0.0.1:30001")
         try:
             r = requests.get(url)
             if r.status_code == 200:
