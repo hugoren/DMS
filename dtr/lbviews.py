@@ -7,7 +7,7 @@ from django.http import  HttpResponse
 from subprocess import Popen, PIPE, check_output
 import ConfigParser
 import argparse
-import  sys
+import sys
 
 ip = "203.195.140.214"
 port = 20000
@@ -55,14 +55,17 @@ def read_argparse():
 
 
 #获取列表
-def lb_list(request):
+def lb_list():
     url = "http://%s:%s//dynamic?upstream=%s"%(ip,port,upsteam_zone)
     try:
-        r = requests.get(url)
-        print r.content
-        # return render(request,'dtr/lbviews.html')
+        # r = requests.get(url)
+        t = ["11","2"]
+        # print r.content
+        return render(request,'dtr/lbviews.html',{"upstream_list":t})
     except Exception as e:
         print e.message
+def t(request):
+    return  render(request,'dtr/lbviews.html')
 
 #获取upstream详细的参数信息
 def lb_verbose(request):
