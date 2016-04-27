@@ -59,13 +59,14 @@ def read_argparse():
 
 
 #获取列表
-def lb_list():
+def lb_list(request):
     url = "http://%s:%s//dynamic?upstream=%s"%(ip,port,upsteam_zone)
     try:
         r = requests.get(url)
-        print r.content
+        servers_list = r.content
     except Exception as e:
         print e.message
+    return render(request,'dtr/lbviews.html',{"upstream_list":servers_list.split(";")})
 
 #list___获取upstream详细的参数信息
 def lb_verbose(request):
@@ -139,20 +140,3 @@ def lb_remove(request):
         print e.message
 
 
-
-if __name__ == '__main__':
-
-    actions = sys.argv[1]
-    if actions == 'list':
-        lb_list()
-
-    elif actions == 'down':
-        lb_down(sys.argv[2])
-
-    elif actions == 'up':
-        lb_up(sys.argv[2])
-    # args = read_argparse()
-    # actions = args.app
-    # print actions
-    # print '%s()'%actions
-    # actions()
