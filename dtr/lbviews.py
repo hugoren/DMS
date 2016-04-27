@@ -142,25 +142,9 @@ def lb_remove(request):
         print e.message
 
 
-#判断dict中的key是否存在
-#
-# def exist_key(key_name):
-#     if upstream_dict.has_key(key_name):
-
 
 if __name__ == '__main__':
 
-    # lb_list()
-    # lb_verbose()
-    # lb().lb_update_parameters()
-    # lb().lb_down()
-    # lb().lb_up()
-    # lb().lb_add()
-    # lb().lb_remove()
-    # lb().read_conf()
-    # lb().argparse()
-    # args = argparse()
-    # up = args.app
     actions = sys.argv[1]
     if actions == 'list':
         lb_list()
