@@ -90,29 +90,29 @@ def lb_update_parameters(request):
 
 #up___servers_开
 def lb_up(upstream_servers):
-    for s in upstream_dict[upstream_servers]:
-        url = "http://%s:%s//dynamic?upstream=%s&server=%s&up="%(ip,port,upsteam_zone,s)
-        try:
-            r = requests.get(url)
-            print r.content
-        except Exception as e:
-            print e.message
+    if upstream_dict.has_key(upstream_servers):
+        for s in upstream_dict[upstream_servers]:
+            url = "http://%s:%s//dynamic?upstream=%s&server=%s&up="%(ip,port,upsteam_zone,s)
+            try:
+                r = requests.get(url)
+                print r.content
+            except Exception as e:
+                print e.message
+    else:
+        print "%s组或节点不存在"%upstream_servers
 
 #down___servers_关
 def lb_down(upstream_servers):
-    try:
-        server_list = upstream_dict[upstream_servers]
-    except Exception as e:
-        print "操作的组或单节点不存在"
-
-    for s in server_list:
-        url = "http://%s:%s//dynamic?upstream=%s&server=%s&down="%(ip,port,upsteam_zone,s)
-        # print s
-        try:
-            r = requests.get(url)
-            print r.content
-        except Exception as e:
-            print e.message
+    if upstream_dict.has_key(upstream_servers):
+        for s in upstream_dict[upstream_servers]:
+            url = "http://%s:%s//dynamic?upstream=%s&server=%s&down="%(ip,port,upsteam_zone,s)
+            try:
+                r = requests.get(url)
+                print r.content
+            except Exception as e:
+                print e.message
+    else:
+        print "%s组或节点不存在"%upstream_servers
 
 
 #add___servers_添加
@@ -140,6 +140,12 @@ def lb_remove(request):
 
     except Exception as e:
         print e.message
+
+
+#判断dict中的key是否存在
+#
+# def exist_key(key_name):
+#     if upstream_dict.has_key(key_name):
 
 
 if __name__ == '__main__':
