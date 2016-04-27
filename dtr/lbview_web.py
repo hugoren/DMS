@@ -2,7 +2,7 @@
 import requests
 import request
 from django.http import StreamingHttpResponse
-from django.shortcuts import  render,render_to_response
+from django.shortcuts import render,render_to_response
 from django.http import  HttpResponse
 from subprocess import Popen, PIPE, check_output
 import ConfigParser

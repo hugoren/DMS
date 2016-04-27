@@ -35,6 +35,6 @@ urlpatterns = [
     #dtr保存upstream_server修改
     url(r'^libview_save/$',lbview_save.lb_save),
     #dtr删除upstream_server
-    url(r'^libview_delete/$',lbview_delete.lb_delete),
+    url(r'^lbview_delete',lbview_delete.lb_delete),
 
 ]

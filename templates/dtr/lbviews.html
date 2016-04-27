@@ -114,10 +114,10 @@
       <tbody>
       {% for i in upstream_list %}
         <tr>
-          <th scope="row">1</th>
-             <td>
+          <th scope="row">{{ forloop.counter }}</th>
+           <td>
                  {{i}}
-             </td>
+           </td>
           <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">编辑</button></td>
           <td><button type="button" class="btn btn-xs btn-danger delete" data-origin="{{i}}">删除</button></td>
         </tr>
@@ -176,7 +176,8 @@
     });
       <!--确定删除upstream_server-->
     $('.delete').click(function(){
-        var origin = $(this).data('origin');
+        var $this = $(this);
+        var origin = $this.data('origin');
         bootbox.dialog({
           message: origin,
           title: "你确定要删除吗?",
@@ -192,8 +193,7 @@
                 $.post('/lbview_delete', {
                   upstream_server: origin
                 },function(res){
-
-                  console.log(res);
+                  $this.parent().parent().remove();
                 });
               }
             }
@@ -211,8 +211,8 @@
         origin: $('#origin').val(),
         upstream_server: $('#upstream_server').val()
       },function(res){
-        console.log(res);
         $('#modal').modal('hide');
+        location.reload();
       });
     });
   })
