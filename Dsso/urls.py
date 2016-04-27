@@ -12,6 +12,7 @@ from ci import pack_download_web
 from ci import pack_view
 from dtr import lbview_web
 from dtr import lbview_save
+from dtr import lbview_delete
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -31,7 +32,9 @@ urlpatterns = [
     url(r'^view/',pack_view.pack_view),
     #dtr_前端路由切换视图
     url(r'^lbview/',lbview_web.lb_list),
-    #dtr保存修改
+    #dtr保存upstream_server修改
     url(r'^libview_save/$',lbview_save.lb_save),
+    #dtr删除upstream_server
+    url(r'^libview_delete/$',lbview_delete.lb_delete),
 
 ]
