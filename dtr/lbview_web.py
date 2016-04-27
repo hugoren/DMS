@@ -81,6 +81,7 @@ def lb_verbose(request):
 def lb_update_parameters(request):
     url = "http://%s:%s//dynamic?upstream=%s&server=127.0.0.1:30001&weight=10&max_fails=5&fail_timeout=5"%(ip,port,upsteam_zone)
     try:
+
         r = requests.get(url)
         print r.content
     except Exception as e:

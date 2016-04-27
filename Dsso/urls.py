@@ -11,6 +11,7 @@ from ci import pack_update
 from ci import pack_download_web
 from ci import pack_view
 from dtr import lbview_web
+from dtr import lbview_save
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/',views.index),
@@ -29,6 +30,8 @@ urlpatterns = [
     #pack_查看版本号并下载
     url(r'^view/',pack_view.pack_view),
     #dtr_前端路由切换视图
-    url(r'^lbview/',lbview_web.lb_list)
+    url(r'^lbview/',lbview_web.lb_list),
+    #dtr保存修改
+    url(r'^libview_save/$',lbview_save.lb_save),
 
 ]

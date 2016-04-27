@@ -77,8 +77,8 @@ def lb_verbose(request):
         print  e.message
 
 #update___更新upstream里的servers参数
-def lb_update_parameters(request):
-    url = "http://%s:%s//dynamic?upstream=%s&server=127.0.0.1:30001&weight=10&max_fails=5&fail_timeout=5"%(ip,port,upsteam_zone)
+def lb_update_parameters():
+    url = "http://%s:%s//dynamic?upstream=%s&server=127.0.0.1:30005&weight=10&max_fails=5&fail_timeout=5"%(ip,port,upsteam_zone)
     try:
         r = requests.get(url)
         print r.content
@@ -151,6 +151,8 @@ if __name__ == '__main__':
 
     elif actions == 'up':
         lb_up(sys.argv[2])
+    elif actions == 'update':
+        lb_update_parameters()
     # args = read_argparse()
     # actions = args.app
     # print actions

@@ -50,6 +50,7 @@ def pack_download(request):
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format("test")
     if app_package == 'latest':
+        print  p_name
         response['package'] = p_name
     return response
 

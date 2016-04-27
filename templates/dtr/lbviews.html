@@ -89,8 +89,8 @@
 {#      <label for="exampleInputEmail2">标签：</label>#}
 {#      <input type="text" class="form-control" name="pack_version" />#}
 {#    </div>#}
-    <button type="submit" class="btn btn-default">查询</button>
-    <input type="reset"  class="btn btn-default" value="Reset" />
+    <button type="submit" class="btn btn-default">查询upstream_list</button>
+{#    <input type="reset"  class="btn btn-default" value="Reset" />#}
   </form>
 </div>
 
@@ -98,13 +98,61 @@
 <div class="container" style="margin-top: 40px;">
     <div class="row col-md-6">
         <ul class="list-group">
-            {% for i in upstream_list %}
-                <a class="download" href="javascript:void(0);" data-url="{{i}}" target="_blank">
-                <li class="list-group-item">{{i}}</li>
-                </a>
-            {% endfor %}
-        </ul>
+
+
+
+    <table class="table">
+      <caption>基于共享内存实时显示upstream_server</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>upstream_server</th>
+          <th>编辑</th>
+          <th>删除</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for i in upstream_list %}
+        <tr>
+          <th scope="row">1</th>
+             <td>
+                 {{i}}
+             </td>
+          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">编辑</button></td>
+          <td><button type="button" class="btn btn-xs btn-danger delete" data-origin="{{i}}">删除</button></td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+            </ul>
     </div>
+</div>
+
+<!--模态框-->
+
+<div class="modal fade" id="edit_server" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">编辑upstream_server</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" id="upstreamId" name="origin" value="">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">upstream_server:</label>
+            <input type="text" class="form-control" id="upstream_server" name="upstream_server">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="saveEdit">保存编辑</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--js模拟表单下载-->
@@ -112,15 +160,61 @@
       <input id="file" type="hidden" name="download_file" value="">
     </form>
 </body>
+
+<!--编辑，删除与后端交互-->
 <script src="http://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script>
   $(function(){
+      <!--下载-->
     $('.download').click(function(){
       var $this = $(this);
       $('#file').val($this.data('url'));
       $('#downForm').submit();
         return false;
-    })
+    });
+      <!--确定删除upstream_server-->
+    $('.delete').click(function(){
+        var origin = $(this).data('origin');
+        bootbox.dialog({
+          message: origin,
+          title: "你确定要删除吗?",
+          buttons: {
+            danger: {
+              label: "取消",
+              className: "btn-danger"
+            },
+            main: {
+              label: "确定",
+              className: "btn-primary",
+              callback: function() {
+                $.post('/lbview_delete', {
+                  upstream_server: origin
+                },function(res){
+
+                  console.log(res);
+                });
+              }
+            }
+          }
+        });
+    });
+    $('#edit_server').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var origin = button.data('origin'); // Extract info from data-* attributes
+      $('#origin').val(origin);
+      $('#upstream_server').val(origin);
+    });
+    $('#saveEdit').click(function(e){
+      $.post('/lbview_save', {
+        origin: $('#origin').val(),
+        upstream_server: $('#upstream_server').val()
+      },function(res){
+        console.log(res);
+        $('#modal').modal('hide');
+      });
+    });
   })
 
 </script>
