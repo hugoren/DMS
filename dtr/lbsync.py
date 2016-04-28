@@ -12,15 +12,13 @@ def lb_sync(sync_conf):
     #获取upstream_servers列表
     servers = lbviews.lb_list()
     servers_list = servers.split("\n")
+    #dict存储k=ip:port,v=server ip:port/down
     servers_dict ={}
     #为了精确匹配，取ip:port
     short_list = []
     for i in range(0,6):
         short_list.append(servers_list[i][7:22])
-        short_list
-    print short_list
-
-
+        servers_dict[servers_list[i][7:22]] = servers_list[i]
 
 
 
@@ -28,9 +26,8 @@ def lb_sync(sync_conf):
     writeback = []
     for line_no, line in eachline(sync_conf):
         for s in short_list:
-            print s
             if s in line:
-                line = s + '\n'
+                line = servers_dict[s] + '\n'
         writeback.append(line)
         with open(sync_conf, 'wt') as handle:
             handle.writelines(writeback)
