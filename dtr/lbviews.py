@@ -64,6 +64,7 @@ def lb_list():
     try:
         r = requests.get(url)
         print r.content
+        return r.content
     except Exception as e:
         print e.message
 
