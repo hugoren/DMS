@@ -9,19 +9,34 @@ def lb_sync(sync_conf):
                 for lnno, line in enumerate(handle):
                     yield lnno, line
 
+    #获取upstream_servers列表
+    servers = lbviews.lb_list()
+    servers_list = servers.split("\n")
+    servers_dict ={}
+    #为了精确匹配，取ip:port
+    short_list = []
+    for i in range(0,6):
+        short_list.append(servers_list[i][7:22])
+        short_list
+    print short_list
 
-    server_list = str(lbviews.lb_list()).split(" ")
-    print server_list
+
+
+
+
+    #重新写入原文件
     writeback = []
     for line_no, line in eachline(sync_conf):
-        if 'a' in line:
-            line = 'b'+'\n'
+        for s in short_list:
+            print s
+            if s in line:
+                line = s + '\n'
         writeback.append(line)
-    with open(sync_conf, 'wt') as handle:
-        handle.writelines(writeback)
+        with open(sync_conf, 'wt') as handle:
+            handle.writelines(writeback)
 
     print "内存持久化到nginx配置完成"
 
 if __name__ == '__main__':
 
-    lb_sync('/Users/hugo/PycharmProjects/Dsso/dtr/conf/upstream.conf')
+    lb_sync('/Users/hugo/PycharmProjects/Dsso/dtr/conf/nginx.conf')
