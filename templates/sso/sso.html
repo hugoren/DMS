@@ -118,8 +118,8 @@
            <td>
                   <a href="{{j.url_url}}" target="_blank">{{j.url_name}}</a>
            </td>
-          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">edit</button></td>
-          <td><button type="button" class="btn btn-xs btn-danger delete" data-origin="{{i}}">删除</button></td>
+          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{j.url_name}}">edit</button></td>
+          <td><button type="button" class="btn btn-xs btn-danger delete" data-origin="{{j.url_name}}">删除</button></td>
         </tr>
       {% endfor %}
 
