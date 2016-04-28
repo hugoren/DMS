@@ -27,5 +27,5 @@ def index(request):
         # url_list = Url.objects.all()
         # for i in url_list:
         #     print i
-        return render(request,'index.html',{'List':select_Uri()})
-        #  return  render_to_response('index.html',{'data':url_list})
+        return render(request,'sso/sso.html',{'List':select_Uri()})
+        #  return  render_to_response('sso/sso.html',{'data':url_list})

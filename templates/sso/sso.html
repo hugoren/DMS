@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ci</title>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+<!--导航栏-->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+
+      <!--Upload-->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:8000/upload">upload</a>
+      </div>
+
+      <!--download-->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:8000/download">download</a>
+      </div>
+
+      <!--view-->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:8000/view">veiw</a>
+      </div>
+
+
+      <!--lb_veiw-->
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://localhost:8000/view">lb_views</a>
+      </div>
+
+
+      <!--显示用户信息-->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+
+                <!--#判断用户是否登陆-->
+                {% if request.user.is_authenticated %}
+                    <li><a href="#">{{request.user.username}},你已登陆</a></li>
+                {% else %}
+                    <li><a href="#">请登录！</a></li>
+                {% endif %}
+
+              </ul>
+        </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<!--根据测试环境，应用，版本号查询-->
+<div class="container">
+  <form class="form-inline" method="post">
+{#    <div class="form-group">#}
+{#      <label for="exampleInputEmail2">应用：</label>#}
+{#      <input type="text" class="form-control" name="pack_app" />#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#      <label for="exampleInputEmail2">标签：</label>#}
+{#      <input type="text" class="form-control" name="pack_version" />#}
+{#    </div>#}
+    <button type="submit" class="btn btn-default">查询upstream_list</button>
+{#    <input type="reset"  class="btn btn-default" value="Reset" />#}
+  </form>
+</div>
+
+
+<div class="container" style="margin-top: 40px;">
+    <div class="row col-md-6">
+        <ul class="list-group">
+
+
+
+    <table class="table">
+      <caption>基于共享内存实时显示upstream_server</caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>upstream_server</th>
+          <th>编辑</th>
+          <th>删除</th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for j in List %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+           <td>
+                  <a href="{{j.url_url}}" target="_blank">{{j.url_name}}</a>
+           </td>
+          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">edit</button></td>
+          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">up</button></td>
+          <td><button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#edit_server" data-origin="{{i}}">down</button></td>
+          <td><button type="button" class="btn btn-xs btn-danger delete" data-origin="{{i}}">删除</button></td>
+        </tr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+            </ul>
+    </div>
+</div>
+
+<!--模态框-->
+
+<div class="modal fade" id="edit_server" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">编辑upstream_server</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" id="upstreamId" name="origin" value="">
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">upstream_server:</label>
+            <input type="text" class="form-control" id="upstream_server" name="upstream_server">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="saveEdit">保存编辑</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--js模拟表单下载-->
+    <form id="downForm" action="/download/" method="post" style="display:none;">
+      <input id="file" type="hidden" name="download_file" value="">
+    </form>
+</body>
+
+<!--编辑，删除与后端交互-->
+<script src="http://cdn.bootcss.com/jquery/2.1.2/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script>
+  $(function(){
+      <!--下载-->
+    $('.download').click(function(){
+      var $this = $(this);
+      $('#file').val($this.data('url'));
+      $('#downForm').submit();
+        return false;
+    });
+      <!--确定删除upstream_server-->
+    $('.delete').click(function(){
+        var $this = $(this);
+        var origin = $this.data('origin');
+        bootbox.dialog({
+          message: origin,
+          title: "你确定要删除吗?",
+          buttons: {
+            danger: {
+              label: "取消",
+              className: "btn-danger"
+            },
+            main: {
+              label: "确定",
+              className: "btn-primary",
+              callback: function() {
+                $.post('/lbview_delete', {
+                  upstream_server: origin
+                },function(res){
+                  $this.parent().parent().remove();
+                });
+              }
+            }
+          }
+        });
+    });
+    $('#edit_server').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var origin = button.data('origin'); // Extract info from data-* attributes
+      $('#origin').val(origin);
+      $('#upstream_server').val(origin);
+    });
+    $('#saveEdit').click(function(e){
+      $.post('/lbview_save', {
+        origin: $('#origin').val(),
+        upstream_server: $('#upstream_server').val()
+      },function(res){
+        $('#modal').modal('hide');
+        location.reload();
+      });
+    });
+  })
+
+</script>
+</html>
