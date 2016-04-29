@@ -23,7 +23,7 @@ def pack_view(request):
             pack_app = request.POST.get("pack_app")
             pack_flag = request.POST.get("pack_version")
 
-            pack_path = config_save.read_public_conf().read_repository()
+            pack_path = config_save.read_public_conf().read_repository("repository_dir","repository")
             try:
                 pack_list = os.listdir(pack_path+'/'+'/'+str(pack_flag)+'/'+str(pack_app))
                 # for pack in pack_list:

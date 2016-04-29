@@ -7,7 +7,8 @@ class read_public_conf(object):
     # def __init__(self,conf):
     #     self.conf = conf
 
-    def read_repository(self):
+    #根据section,key取返回的value
+    def read_repository(self,config_section,config_key):
         repository_conf = '/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf'
         config = ConfigParser()
         config.read(repository_conf)
@@ -19,8 +20,10 @@ class read_public_conf(object):
                 all_config[section][key] = value
 
         #根据两层取值，先取[],再取相应的key
-        config = all_config["repository_dir"]
-        return config["repository"]
+        config = all_config[config_section]
+        print config[config_key]
+        return config[config_key]
 
 if __name__ == '__main__':
-   read_public_conf().read_repository()
+
+   read_public_conf().read_repository("repository_dir","repository")
