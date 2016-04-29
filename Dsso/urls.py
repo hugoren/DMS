@@ -15,7 +15,7 @@ from dtr import lbview_save
 from dtr import lbview_delete
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^index/',views.index),
+    url(r'^sso/',views.index),
     url(r'^ci/',ci_views.ci),
     url(r'^book/$',dtr_views.Booklist.as_view()),
     url(r'^book/(\d+)',dtr_views.BookDetail.as_view()),
