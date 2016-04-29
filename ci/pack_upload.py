@@ -4,7 +4,7 @@
 from django.shortcuts import  render,render_to_response
 from django.http import HttpResponse
 import os
-import  datetime
+import datetime
 import config_save
 
 
@@ -41,7 +41,7 @@ def upload_file(request):
         pack_save = '%s_%s_%s_%s'%(app_name,app_version,time_stamp,app_package)
 
         #逐层判断目录是否存在？创建
-        pack_path = config_save.read_public_conf('/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf').read_conf()
+        pack_path = config_save.read_public_conf().read_repository()
         first_layer = 'snapshot'
         print pack_path
         os.chdir(pack_path)

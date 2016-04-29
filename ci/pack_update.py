@@ -10,7 +10,7 @@ def pack_update(request):
     app_name = request.GET.get('app_name','')
     app_package = request.GET.get('app_package','')
 
-    pack_path = config_save.read_public_conf('/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf').read_conf()
+    pack_path = config_save.read_public_conf().read_repository()
     first_layer = 'release'
     os.chdir(pack_path)
     if not os.path.exists(first_layer):
