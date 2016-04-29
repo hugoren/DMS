@@ -17,6 +17,7 @@ def download_file(parameter_flag,parameter_app,parameter_package,parameter_paaka
         with open("%s"%parameter_package,"wb") as pack_content:
             pack_content.write(r.content)
         print "%s,下载成功!"%parameter_package
+        sys.exit(0)
     except Exception as e:
         return e.message
 
