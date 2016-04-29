@@ -7,9 +7,12 @@ from email.mime.application import MIMEApplication
 import sys,os
 # import chardet
 
+
+
+
 mail_host = "smtp.exmail.qq.com"
 mail_user = "alert@xingren.com"
-mail_pass = "6KhJg6G1"
+mail_pass = ""
 
 #读取txt文本
 module_dir = os.path.dirname(__file__)
