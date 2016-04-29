@@ -6,7 +6,7 @@ import  os
 
 
 def download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save):
-    url = 'http://localhost:8000/download_client/?app_flag=%s&app_name=%s&app_package=%s'%(parameter_flag,parameter_app,parameter_package)
+    # url = 'http://localhost:8000/download_client/?app_flag=%s&app_name=%s&app_package=%s'%(parameter_flag,parameter_app,parameter_package)
     # url = 'http://119.29.104.171:10000/download_client/?app_flag=%s&app_name=%s&app_package=%s'%(parameter_flag,parameter_app,parameter_package)
     r = requests.get(url)
     os.chdir(parameter_paakage_save)

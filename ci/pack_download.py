@@ -31,10 +31,6 @@ def pack_download(request):
         os.chdir(DIR)
 
         if file_name == 'latest':
-            # package_list = os.listdir(DIR)
-            # package_list.sort(pack_compare)
-            # pack_name = package_list[-1]
-            # response_pack_name = pack_name
             file_name = p_name
         with file(file_name,'rb') as f:
             while True:
@@ -50,7 +46,7 @@ def pack_download(request):
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format("test")
     if app_package == 'latest':
-        print  p_name
+        print p_name
         response['package'] = p_name
     return response
 
