@@ -2,13 +2,15 @@
 
 from django.http import StreamingHttpResponse
 import os
+import config_save
 
 def pack_download(request):
 
     app_flag = request.GET.get('app_flag','')
     app_name = request.GET.get('app_name','')
     app_package = request.GET.get('app_package','')
-    pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
+    # pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
+    pack_path = config_save.read_public_conf('/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf').read_conf()
     DIR = pack_path+'/'+app_flag+'/'+app_name
     global pack_name
 

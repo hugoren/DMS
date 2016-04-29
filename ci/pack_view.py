@@ -4,7 +4,7 @@ from django.shortcuts import render
 from sso.models import Url
 import  os
 from django.shortcuts import render,render_to_response
-
+import config_save
 
 def pack_view(request):
     # return HttpResponse("欢迎hugo")
@@ -23,7 +23,7 @@ def pack_view(request):
             pack_app = request.POST.get("pack_app")
             pack_flag = request.POST.get("pack_version")
 
-            pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
+            pack_path = config_save.read_public_conf('/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf').read_conf()
             try:
                 pack_list = os.listdir(pack_path+'/'+'/'+str(pack_flag)+'/'+str(pack_app))
                 # for pack in pack_list:

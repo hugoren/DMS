@@ -2,7 +2,7 @@
 
 from ConfigParser import ConfigParser
 
-class read_conf():
+class read_public_conf():
 
     def __init__(self,conf):
         self.conf = conf
@@ -17,9 +17,9 @@ class read_conf():
             for key, value in config.items(section):
                 all_config[section][key] = value
 
-        config = all_config["save_dir"]
-        return config['save_dir']
-        # return config['save_dir']
+        #根据两层取值，先取[],再取相应的key
+        config = all_config["repository_dir"]
+        return config["repository"]
 
 if __name__ == '__main__':
-    read_conf('./conf/save_dir.conf').read_conf()
+    read_public_conf('/Users/hugo/PycharmProjects/Dsso/ci/conf/save_dir.conf').read_conf()
