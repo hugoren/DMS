@@ -9,7 +9,6 @@ def pack_download(request):
     app_flag = request.GET.get('app_flag','')
     app_name = request.GET.get('app_name','')
     app_package = request.GET.get('app_package','')
-    # pack_path = '/Users/hugo/PycharmProjects/Dsso/00'
     pack_path = config_save.read_public_conf().read_repository("repository_dir","repository")
     DIR = pack_path+'/'+app_flag+'/'+app_name
     global pack_name
