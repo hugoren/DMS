@@ -1,68 +1,23 @@
 #coding:utf-8
-#参数解释
-import  sys
+import sys
+import argparse
 
-# def TestSys():
-#     for arg in sys.argv[1:]:
-#         print arg
-# TestSys()
-
-# import  argparse
-# parser = argparse.ArgumentParser(description='test')
-# args = parser.parse_args()
-
-
-#形参，实参
-
-def t1(a,b):
-    print  a + b
-t1(2,5)
+def read_argparse():
+    parser = argparse.ArgumentParser(description="test")
+    group = parser.add_argument_group()
+    group.add_argument('-v','--verbose',help="v",action='store_true')
+    group.add_argument('-a','--action',help='动作',action='store_true',dest='a')
+    group.add_argument('app',help='发布的应用名称',action='store')
+    group.add_argument('version',help='发布的版本' ,action='store')
+    group.add_argument('-p','--publish',help='发布',action='store_true',dest='p')
+    given_args = parser.parse_args()
+    return given_args
 
 
-def t2(c=3,d=9):
-    print  c+d
-t2()
-
-def t3(*e):
-    if len(e) == 0:
-        print None
-    else:
-        print '%s_%s_%s'%(e[0],e[1],e[2])
-t3(9,9,0)
-
-
-def t4(**f):
-    print f['a']
-
-t4(a=99,b=88,c=77)
-
-
-def t5():
-    a = 8
-    print "t5"
-    def t6():
-        print a
-        def t7():
-            print "99"
-        t7()
-    t6()
-t5()
-
-class Animal(object):
-    def running(self):
-        print  'Animal is running'
-
-class Dog(Animal):
-    def running(self):
-        print 'Dog is running'
-
-    def eating(self):
-        print  'Dog is eating'
-
-
-class Cat(Animal):
-    pass
-
-dog = Dog()
-dog.running()
-dog.eating()
+if __name__ == '__main__':
+    given_args = read_argparse()
+    app = given_args.app
+    action = given_args.a
+    version = given_args.version
+    publish = given_args.p
+    print app +" "+ version
