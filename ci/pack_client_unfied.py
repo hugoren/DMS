@@ -1,6 +1,5 @@
 #-*-coding:utf-8 -*-
 
-
 import urllib2
 from poster.encode import  multipart_encode
 from poster.streaminghttp import register_openers
@@ -87,7 +86,6 @@ def download_file(parameter_flag,parameter_app,parameter_package,parameter_paaka
 #     parameter_version = sys.argv[2]
 #     parameter_package = sys.argv[3]
 #     upload_file(parameter_app,parameter_version,parameter_package)
-
 
 
 #读取命令行参数
