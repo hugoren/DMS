@@ -1,17 +1,28 @@
 #-*-coding:utf-8 -*-
 
-#client端摸拟表单上传
+
 import urllib2
 from poster.encode import  multipart_encode
 from poster.streaminghttp import register_openers
 import sys
-import  os
+import os
 import requests
+import argparse
 
-register_openers()
+#读取命令行参数
+def read_argparse():
+    parser = argparse.ArgumentParser(description="读取包状态变更的命令行参数")
+    group = parser.add_argument_group()
+    group.add_argument('upload',help="上传包",action='store_true')
+    group.add_argument('update',help='包状包变更',action='store')
+    group.add_argument('download',help='包下载',action='store')
+    given_args = parser.parse_args()
+    return given_args
+
 
 
 #模拟表单，流式上传
+register_openers()
 def upload_file(parameter_app,parameter_version,parameter_package):
     # url = 'http://119.29.104.171:10000/upload/'
     # url = 'http://119.29.104.171:10000/upload/?app_name=%s&app_version=%s&app_package=%s'%(parameter_app,parameter_version,parameter_package)
@@ -52,29 +63,38 @@ def download_file(parameter_flag,parameter_app,parameter_package,parameter_paaka
         return e.message
 
 
+#
+# #包上传
+# if __name__ == '__main__':
+#     parameter_flag = sys.argv[1]
+#     parameter_app = sys.argv[2]
+#     parameter_package = sys.argv[3]
+#     parameter_paakage_save = sys.argv[4]
+#     download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save)
+#
+#
+# #包状态更新
+# if __name__ == '__main__':
+#     parameter_app = sys.argv[1]
+#     parameter_package = sys.argv[2]
+#     update_version(parameter_app,parameter_package)
+#
+#
+#
+# #包下载
+# if __name__ == '__main__':
+#     parameter_app = sys.argv[1]
+#     parameter_version = sys.argv[2]
+#     parameter_package = sys.argv[3]
+#     upload_file(parameter_app,parameter_version,parameter_package)
+
+
+
+#读取命令行参数
 if __name__ == '__main__':
-    parameter_flag = sys.argv[1]
-    parameter_app = sys.argv[2]
-    parameter_package = sys.argv[3]
-    parameter_paakage_save = sys.argv[4]
-    download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save)
+    given_args = read_argparse()
+    app = given_args.app
+    version = given_args.version
+    publish = given_args.publish
+    print '%s_%s_%s'%(app,version,publish)
 
-
-
-
-
-
-#包状态更新
-if __name__ == '__main__':
-    parameter_app = sys.argv[1]
-    parameter_package = sys.argv[2]
-    update_version(parameter_app,parameter_package)
-
-
-
-#包下载
-if __name__ == '__main__':
-    parameter_app = sys.argv[1]
-    parameter_version = sys.argv[2]
-    parameter_package = sys.argv[3]
-    upload_file(parameter_app,parameter_version,parameter_package)
