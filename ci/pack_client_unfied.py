@@ -12,9 +12,9 @@ import argparse
 def read_argparse():
     parser = argparse.ArgumentParser(description="读取包状态变更的命令行参数")
     group = parser.add_argument_group()
-    group.add_argument('upload',help="上传包",action='store_true')
-    group.add_argument('update',help='包状包变更',action='store')
-    group.add_argument('download',help='包下载',action='store')
+    group.add_argument('upload',help="上传包;三个参数，应用(p1)|版本号(p2)|包的绝对的路径(p3)",type=str)
+    group.add_argument('update',help='包状态变更;两个参数,应用(p1)|具体的包名称(p2)')
+    group.add_argument('download',help='包下载;四个参数，snap/release(p1)|应用(p2)|具体的包名(p3)｜包下载路径(p4)')
     given_args = parser.parse_args()
     return given_args
 
@@ -90,9 +90,9 @@ def download_file(parameter_flag,parameter_app,parameter_package,parameter_paaka
 
 #读取命令行参数
 if __name__ == '__main__':
-    given_args = read_argparse()
-    app = given_args.app
-    version = given_args.version
-    publish = given_args.publish
-    print '%s_%s_%s'%(app,version,publish)
+    args = read_argparse()
+    upload = args.upload
+    update = args.update
+    download = args.download
+    print '%s_%s_%s'%(upload,update,download)
 
