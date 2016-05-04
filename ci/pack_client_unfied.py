@@ -69,6 +69,8 @@ if __name__ == '__main__':
     upload = str(args.upload).split(" ")
     update = str(args.update).split(" ")
     download = str(args.download).split(" ")
+    #根据namespace是否为来判断是否启用方法
+    #根据每个的dest子参数作为实参传值，调用方法
     if args.upload != None:
         upload_file(upload[0],upload[1],upload[2])
     elif args.update != None:
