@@ -12,9 +12,9 @@ import argparse
 def read_argparse():
     parser = argparse.ArgumentParser(description="读取包状态变更的命令行参数")
     group = parser.add_argument_group()
-    group.add_argument('upload',help="上传包;三个参数，应用(p1)|版本号(p2)|包的绝对的路径(p3)",type=str)
-    group.add_argument('update',help='包状态变更;两个参数,应用(p1)|具体的包名称(p2)')
-    group.add_argument('download',help='包下载;四个参数，snap/release(p1)|应用(p2)|具体的包名(p3)｜包下载路径(p4)')
+    group.add_argument('-up',dest='upload',help="上传包;三个参数，应用(p1)|版本号(p2)|包的绝对的路径(p3)",type=str)
+    group.add_argument('-upd',dest='update',help='包状态变更;两个参数,应用(p1)|具体的包名称(p2)')
+    group.add_argument('-d',dest='download',help='包下载;四个参数，snap/release(p1)|应用(p2)|具体的包名(p3)｜包下载路径(p4)')
     given_args = parser.parse_args()
     return given_args
 
