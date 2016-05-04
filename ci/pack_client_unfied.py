@@ -11,10 +11,10 @@ import argparse
 #读取命令行参数
 def read_argparse():
     parser = argparse.ArgumentParser(description="读取包状态变更的命令行参数")
-    group = parser.add_argument_group()
-    group.add_argument('-up',dest='upload',help="上传包;三个参数，应用(p1)|版本号(p2)|包的绝对的路径(p3)",type=str)
-    group.add_argument('-upd',dest='update',help='包状态变更;两个参数,应用(p1)|具体的包名称(p2)')
-    group.add_argument('-d',dest='download',help='包下载;四个参数，snap/release(p1)|应用(p2)|具体的包名(p3)｜包下载路径(p4)')
+    group = parser.add_argument_group('pack_client')
+    group.add_argument('-upl',dest='upload',help="上传包;三个参数，应用(p1)|版本号(p2)|包的绝对的路径(p3)",type=str)
+    group.add_argument('-upd',dest='update',help='包状态变更;两个参数,应用(p1)|具体的包名称(p2)',type=str)
+    group.add_argument('-d',dest='download',help='包下载;四个参数，snap/release(p1)|应用(p2)|具体的包名(p3)｜包下载路径(p4)',type=str)
     given_args = parser.parse_args()
     return given_args
 
@@ -62,37 +62,15 @@ def download_file(parameter_flag,parameter_app,parameter_package,parameter_paaka
         return e.message
 
 
-#
-# #包上传
-# if __name__ == '__main__':
-#     parameter_flag = sys.argv[1]
-#     parameter_app = sys.argv[2]
-#     parameter_package = sys.argv[3]
-#     parameter_paakage_save = sys.argv[4]
-#     download_file(parameter_flag,parameter_app,parameter_package,parameter_paakage_save)
-#
-#
-# #包状态更新
-# if __name__ == '__main__':
-#     parameter_app = sys.argv[1]
-#     parameter_package = sys.argv[2]
-#     update_version(parameter_app,parameter_package)
-#
-#
-#
-# #包下载
-# if __name__ == '__main__':
-#     parameter_app = sys.argv[1]
-#     parameter_version = sys.argv[2]
-#     parameter_package = sys.argv[3]
-#     upload_file(parameter_app,parameter_version,parameter_package)
-
 
 #读取命令行参数
 if __name__ == '__main__':
     args = read_argparse()
-    upload = args.upload
-    update = args.update
-    download = args.download
+    upload = str(args.upload).split(" ")
+    update = str(args.update).split(" ")
+    download = str(args.download).split(" ")
+    if 'upl' == 'upl':
+        upload_file(upload[0],upload[1],upload[2])
     print '%s_%s_%s'%(upload,update,download)
+    print upload[0]
 
