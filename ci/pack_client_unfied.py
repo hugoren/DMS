@@ -69,8 +69,15 @@ if __name__ == '__main__':
     upload = str(args.upload).split(" ")
     update = str(args.update).split(" ")
     download = str(args.download).split(" ")
-    if 'upl' == 'upl':
+    if args.upload != None:
         upload_file(upload[0],upload[1],upload[2])
-    print '%s_%s_%s'%(upload,update,download)
-    print upload[0]
+    elif args.update != None:
+        update_version(update[0],update[1])
+    elif args.download != None:
+        download_file(download[0],download[1],download[2],download[3])
+    else:
+        print "没找到匹配的方法"
+
+
+
 
