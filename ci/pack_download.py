@@ -3,6 +3,7 @@
 from django.http import StreamingHttpResponse
 import os
 import config_save
+import map_dummy
 
 def pack_download(request):
 
@@ -42,8 +43,9 @@ def pack_download(request):
                     break
 
 
-
-    response = StreamingHttpResponse(file_iterator(app_package))
+    #调用file_iterator方法，流式下载包
+    # response = StreamingHttpResponse(file_iterator(app_package))
+    response = StreamingHttpResponse(map_dummy.map_dummy(file_iterator,app_package))
     response['Content-Type'] = 'application/octet-stream'
     response['Content-Disposition'] = 'attachment;filename="{0}"'.format("test")
     if app_package == 'latest':
