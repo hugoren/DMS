@@ -1,5 +1,6 @@
 #coding:utf-8
 import urllib2
+import requests
 from multiprocessing.dummy import Pool as ThreadPool
 def map_dummy():
     urls = [
@@ -16,18 +17,16 @@ def map_dummy():
       'http://www.python.org/psf/',
       'http://docs.python.org/devguide/',
       'http://www.python.org/community/awards/'
-      # 等等...
       ]
 
     # 创建一个工作者线程池
     pool = ThreadPool(4)
     # 在各个线程中打开url，并返回结果
-    results = pool.map(urllib2.urlopen, urls)
+    results = pool.map(requests.get,urls)
     #close the pool and wait for the work to finish
     # 关闭线程池，等待工作结束
     pool.close()
     pool.join()
     for s in results:
-        print  s
-
+        print s
 map_dummy()
