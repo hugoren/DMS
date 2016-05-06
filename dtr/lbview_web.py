@@ -1,17 +1,9 @@
 #coding:utf-8
 import requests
-import request
-from django.http import StreamingHttpResponse
 from django.shortcuts import render,render_to_response
-from django.http import  HttpResponse
-from subprocess import Popen, PIPE, check_output
 import ConfigParser
 import argparse
-import sys
 
-ip = "203.195.140.214"
-port = 20000
-weight = 10
 ip = "203.195.140.214"
 port = 20000
 weight = 10
@@ -136,7 +128,7 @@ def lb_remove(request):
             print "删除成功！"
             print r.content
         elif r.status_code == 400:
-            print  "该servers不存！"
+            print "该servers不存！"
         else:
             print "删除不成功，请检查其它原因！"
 

@@ -9,9 +9,7 @@ import ConfigParser
 import argparse
 import sys
 
-ip = "203.195.140.214"
-port = 20000
-weight = 10
+
 ip = "203.195.140.214"
 port = 20000
 weight = 10
