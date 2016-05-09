@@ -6,12 +6,8 @@ from django.http import HttpResponse
 import os
 import datetime
 import config_save
+import map_dummy
 
-
-# def save_conf():
-#     save_dir = config_save.read_conf('./conf/save_dir.conf').read_conf()
-#     print save_dir
-#     return save_dir
 
 #接收大文件上传入口
 def upload_file(request):
@@ -50,16 +46,18 @@ def upload_file(request):
         os.chdir(pack_path+'/'+first_layer)
         if not os.path.exists(app_name):
             os.makedirs(app_name)
-        #流方式存包
+        #流方式存包路径
         filename = os.path.join(pack_path+'/'+first_layer+'/'+'/'+app_name,pack_save)
         try:
             local_file = file(filename,'wb+')
             for chunk in f.chunks():
-                local_file.write(chunk)
+                map_dummy.map_dummy(local_file.write,chunk)
+                # local_file.write(chunk)
+
             return HttpResponse(u'{}上传成功'.format(pack_save))
         except Exception as e:
 
-            return  HttpResponse(u'{}上传失败%s'%e.message.format(pack_save))
+            return HttpResponse(u'{}上传失败%s'%e.message.format(pack_save))
     return render_to_response('ci/pack_upload.html',{})
 
 
