@@ -12,3 +12,6 @@
 ![ci流程图](http://dl2.iteye.com/upload/attachment/0117/2807/6369d5a7-3b3d-3ce0-a62a-5380bdf18f4a.png)
 ##自定义版本回滚操作
 ##批量回滚服务器版本
+
+##lb流量切换
+![lb流量切换](http://dl2.iteye.com/upload/attachment/0117/2797/298551f0-5a34-3496-a7c8-bb8e946cc169.png)
