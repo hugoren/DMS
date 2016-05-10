@@ -1,8 +1,8 @@
 #-*-coding:utf-8-*-
 
 
-from  dtr.models import  Book
-from  rest_framework import  serializers
+from dtr.models import  Book
+from rest_framework import  serializers
 from  django.contrib.auth.models import  User
 
 class BookSerializer(serializers.Serializer):
@@ -20,7 +20,7 @@ class BookSerializer(serializers.Serializer):
             instance.name = attrs['name']
             instance.author = attrs['author']
 
-            return  instance
+            return instance
         return Book(**attrs)
 
 #

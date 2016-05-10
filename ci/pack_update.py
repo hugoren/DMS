@@ -1,8 +1,9 @@
 #coding:utf-8
 import os
 import shutil
-from  django.http import  HttpResponse
+from django.http import  HttpResponse
 import config_save
+import map_dummy
 
 def pack_update(request):
 
@@ -21,6 +22,7 @@ def pack_update(request):
     os.chdir(pack_path+'/'+'snapshot'+'/'+app_name)
     try:
         shutil.copy2(app_package,pack_path+'/'+first_layer+'/'+app_name)
+        # map_dummy.map_dummy(shutil.copy2,app_package,pack_path+'/'+first_layer+'/'+app_name)
         # os.chdir(pack_path+'/'+dir_update+'/'+app_name)
         # os.renames(parameter1,"%s_%s_%s_%s.tgz"%(filename_list[0],filename_list[1],'release',(a+o).strftime("%Y%m%d%H%M")))
     except Exception as e:
