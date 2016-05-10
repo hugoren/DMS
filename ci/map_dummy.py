@@ -1,6 +1,5 @@
 #coding:utf-8
-import urllib2
-import requests
+
 from multiprocessing.dummy import Pool as ThreadPool
 def map_dummy(functions,squeue):
 
