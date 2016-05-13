@@ -9,7 +9,7 @@ import sys,os
 
 
 
-
+#带附件发送邮件
 mail_host = "smtp.exmail.qq.com"
 mail_user = "alert@xingren.com"
 mail_pass = ""
