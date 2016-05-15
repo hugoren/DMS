@@ -172,7 +172,17 @@ import copy
 # openfile()
 
 
-def t1():
-    name = "nick" if 1==2 else "jenny"
-    print name
-t1()
+# def t1():
+#     name = "nick" if 1==2 else "jenny"
+#     print name
+# t1()
+
+def t2(arg):
+    return arg+1
+
+result = t2(125)
+
+my_lanbda = lambda arg:arg + 1
+
+result = my_lanbda(123)
+print result
