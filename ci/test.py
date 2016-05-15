@@ -135,3 +135,20 @@ import copy
 # n3 = copy.copy(n1)
 # print n2
 # print n3
+
+
+def name(n):
+    print (n)
+
+name(999)
+
+def func(name,age=18):
+    print("%s:%s")%(name,age)
+
+func("hugo")
+
+
+def fun1(*args,**kwargs):
+    print args
+
+fun1("ii","i9",["k1","hugo"],"00")
