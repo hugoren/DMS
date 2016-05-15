@@ -177,12 +177,22 @@ import copy
 #     print name
 # t1()
 
-def t2(arg):
-    return arg+1
+# def t2(arg):
+#     return arg+1
+#
+# result = t2(125)
+#
+# my_lanbda = lambda arg:arg + 1
+#
+# result = my_lanbda(123)
+# print result
 
-result = t2(125)
 
-my_lanbda = lambda arg:arg + 1
+def func(arg1,arg2):
+    if arg1 == 0:
+        print arg1,arg2
+    arg3 = arg1 + arg2
+    print arg3
+    func(arg2,arg3)
 
-result = my_lanbda(123)
-print result
+func(0,1)
