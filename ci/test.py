@@ -137,31 +137,36 @@ import copy
 # print n3
 
 
-def name(n):
-    print (n)
+# def name(n):
+#     print (n)
+#
+# name(999)
+#
+# def func(name,age=18):
+#     print("%s:%s")%(name,age)
+#
+# func("hugo")
+#
+#
+# def fun1(*args,**kwargs):
+#     print args
+#
+# fun1("ii","i9",["k1","hugo"],"00")
+#
+#
+# p = "nick"
+# def name():
+#     global p
+#     p = "jenny"
+#     print (p)
+#
+# def name2():
+#     print p
+#
+# name()
+# name2()
 
-name(999)
-
-def func(name,age=18):
-    print("%s:%s")%(name,age)
-
-func("hugo")
-
-
-def fun1(*args,**kwargs):
-    print args
-
-fun1("ii","i9",["k1","hugo"],"00")
-
-
-p = "nick"
-def name():
-    global p
-    p = "jenny"
-    print (p)
-
-def name2():
-    print p
-
-name()
-name2()
+def openfile():
+    with open('pack_view.py','r'),open('pull_package_version.py','r') as f:
+        print f.read()
+openfile()
