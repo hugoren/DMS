@@ -166,7 +166,13 @@ import copy
 # name()
 # name2()
 
-def openfile():
-    with open('pack_view.py','r'),open('pull_package_version.py','r') as f:
-        print f.read()
-openfile()
+# def openfile():
+#     with open('pack_view.py','r'),open('pull_package_version.py','r') as f:
+#         print f.read()
+# openfile()
+
+
+def t1():
+    name = "nick" if 1==2 else "jenny"
+    print name
+t1()
