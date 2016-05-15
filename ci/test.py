@@ -152,3 +152,16 @@ def fun1(*args,**kwargs):
     print args
 
 fun1("ii","i9",["k1","hugo"],"00")
+
+
+p = "nick"
+def name():
+    global p
+    p = "jenny"
+    print (p)
+
+def name2():
+    print p
+
+name()
+name2()
