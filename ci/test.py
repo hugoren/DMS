@@ -188,11 +188,23 @@ import copy
 # print result
 
 
-def func(arg1,arg2):
-    if arg1 == 0:
-        print arg1,arg2
-    arg3 = arg1 + arg2
-    print arg3
-    func(arg2,arg3)
+# def func(arg1,arg2):
+#     if arg1 == 0:
+#         print arg1,arg2
+#     arg3 = arg1 + arg2
+#     print arg3
+#     func(arg2,arg3)
+#
+# func(0,1)
 
-func(0,1)
+
+from SimpleXMLRPCServer import SimpleXMLRPCServer
+
+def add(x,y):
+    return x+y
+
+if __name__ == '__main__':
+    s = SimpleXMLRPCServer(('127.0.0.1',8000))
+    s.register_function(add)
+    s.serve_forever()
+    
