@@ -198,13 +198,50 @@ import copy
 # func(0,1)
 
 
-from SimpleXMLRPCServer import SimpleXMLRPCServer
+# from SimpleXMLRPCServer import SimpleXMLRPCServer
+#
+# def add(x,y):
+#     return x+y
+#
+# if __name__ == '__main__':
+#     s = SimpleXMLRPCServer(('127.0.0.1',8000))
+#     s.register_function(add)
+#     s.serve_forever()
 
-def add(x,y):
-    return x+y
 
-if __name__ == '__main__':
-    s = SimpleXMLRPCServer(('127.0.0.1',8000))
-    s.register_function(add)
-    s.serve_forever()
-    
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# import urllib
+# import urllib2
+# import json
+# def hostname(IP):
+#     url = 'http://www.baidu.com/restful/getAssetByIpAddress'
+#     user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+#     values = {'ipAddress': IP}
+#     headers = {'User-Agent': user_agent}
+#     data = urllib.urlencode(values)
+#     req = urllib2.Request(url, data, headers)
+#     response = urllib2.urlopen(req)
+#     res = response.read()
+#     data = json.loads(res)
+#     return data
+#
+# hostname('127.0.0.1')
+
+
+from django.db import models
+from django.utils import timezone
+import random
+import time
+from models import  SimpleTask
+
+def run_simple_task():
+    task = SimpleTask("task_name")
+    task.save()
+    seconds = random.randint(5,15)
+    time.sleep(seconds)
+
+    task.finish_time = timezone.now()
+    task.save()
+    return  seconds

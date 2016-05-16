@@ -33,3 +33,10 @@ def ci(request):
     else:
         return  render(request,'ci/pull_package_version.html',{"Pack_List":pull_package_version.ssh_client("119.29.101.41","admin","y298FTgS8Y").ssh_exce_cmd()})
 
+from models import  SimpleTask
+from test import run_simple_task
+
+def do_task(request):
+    seconds = run_simple_task()
+    return  HttpResponse("I have done task")
+
